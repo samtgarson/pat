@@ -1,0 +1,52 @@
+{
+  "name": "code",
+  "version": "0.0.0",
+  "license": "MIT",
+  "bin": "cli.js",
+  "scripts": {},
+  "dependencies": {
+    "ink": "^2.6.0",
+    "meow": "^6.0.0",
+    "minimist-options": "^4.0.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0"
+  },
+  "devDependencies": {
+    "@samtgarson/eslint-config": "file:.yalc/@samtgarson/eslint-config",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "^16.9.17",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "chalk": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "ink-testing-library": "^1.0.3",
+    "typescript": "^3.7.4"
+  },
+  "eslintConfig": {
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "import",
+      "promise"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "@samtgarson/eslint-config"
+    ],
+    "rules": {
+      "@typescript-eslint/explicit-function-return-type": 0
+    }
+  }
+}
