@@ -6,6 +6,7 @@
     "target": "es5",
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
@@ -13,5 +14,5 @@
     }
   },
   "exclude": ["dist", "./*.d.ts"],
-  "include": ["src"]
+  "include": ["src", "test"]
 }

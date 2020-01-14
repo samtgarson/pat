@@ -1,14 +1,15 @@
 {
-  "name": "code",
-  "version": "0.0.0",
+  "name": "pat",
+  "version": "0.0.1",
   "license": "MIT",
   "bin": "cli.js",
   "description": "An interactive Postman CLI",
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc"
+    "dev": "tsc --watch -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
+    "axios": "^0.19.1",
     "commander": "^4.1.0",
     "ink": "^2.6.0",
     "minimist-options": "^4.0.2",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@samtgarson/eslint-config": "file:.yalc/@samtgarson/eslint-config",
+    "@types/jest": "^24.0.25",
     "@types/node": "^13.1.6",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^16.9.17",
@@ -29,7 +31,37 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "ink-testing-library": "^1.0.3",
+    "jest": "^24.9.0",
+    "jest-mock-axios": "^3.2.0",
+    "ts-jest": "^24.3.0",
     "typescript": "^3.7.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": ".+\\.spec\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {
+      "^@/(.+)$": "<rootDir>/$1"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setup.js"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.test.json"
+      }
+    }
   },
   "eslintConfig": {
     "settings": {

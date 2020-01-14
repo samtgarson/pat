@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "strictNullChecks": true
+  },
+  "extends": "./tsconfig.json",
+  "include": ["lib/**/*", "index.ts", "types/*"],
+  "exclude": ["node_modules", "test/***.spec.ts", "**/__mocks__/**/*"]
+}
