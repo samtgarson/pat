@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "strict": true,
+    "resolveJsonModule": true,
     "target": "es5",
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -10,5 +12,6 @@
       "@/*": ["*"]
     }
   },
-  "exclude": ["dist", "./*.d.ts"]
+  "exclude": ["dist", "./*.d.ts"],
+  "include": ["src"]
 }

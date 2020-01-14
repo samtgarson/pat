@@ -5,7 +5,7 @@ import { Text, Color } from 'ink'
 function App ({ apiKey }: InferProps<typeof App.propTypes>) {
   return (
     <Text>
-      Hello, <Color green>{ apiKey || 'World' }</Color>
+      Hello, <Color green>{ apiKey  }</Color>
     </Text>
   )
 }
