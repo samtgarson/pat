@@ -1,17 +1,27 @@
-import React from 'react'
-import PropTypes, { InferProps } from 'prop-types'
+import React, { useState, FunctionComponent } from 'react'
 import { Text, Color } from 'ink'
+import CollectionFetcher from './components/collection-fetcher/index'
+import { Collection } from '@/types/postman/collection'
+import { AppOptions } from '@/types/options'
+import { ErrorContext, ErrorMessage } from '@/src/components/util/error'
 
-function App ({ apiKey }: InferProps<typeof App.propTypes>) {
+const App: FunctionComponent<AppOptions> = ({ apiKey }) => {
+  const [collection, setCollection] = useState<Collection>()
+  const [error, setError] = useState()
+  const errorContext = { error, setError }
+
+  if (error) return <ErrorMessage error={ error } />
+
   return (
-    <Text>
-      Hello, <Color green>{ apiKey  }</Color>
-    </Text>
+    <ErrorContext.Provider value={ errorContext }>
+      { collection
+        ? <Text>
+            Using Collection <Color green>{ collection.info.name }</Color>
+          </Text>
+        : <CollectionFetcher set={ setCollection } apiKey={ apiKey } />
+      }
+    </ErrorContext.Provider>
   )
-}
-
-App.propTypes = {
-	apiKey: PropTypes.string
 }
 
 export default App

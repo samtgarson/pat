@@ -4,7 +4,7 @@ export interface BaseCollectionAttributes {
   uid: string;
 }
 
-export interface Collection extends BaseCollectionAttributes {
+export interface Collection {
     info:     Info;
     item:     CollectionItem[];
     auth:     CollectionAuth;

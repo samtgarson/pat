@@ -16,7 +16,10 @@ cmd
   .description(pkg.description)
   .requiredOption('-k, --apiKey <apiKey>', 'Your Postman API key')
   .action(async ({ apiKey }: AppOptions) => {
-    const { waitUntilExit } = render(<App apiKey={ apiKey }/>)
+    const { waitUntilExit } = render(
+      <App apiKey={ apiKey }/>,
+      { debug: !!process.env.PAT_DEBUG }
+    )
     return waitUntilExit
   })
 
@@ -24,7 +27,6 @@ const main = async () => {
   try {
     await cmd.parseAsync(process.argv)
   } catch (e) {
-    console.error(e.message)
     process.exit(1)
   }
 }

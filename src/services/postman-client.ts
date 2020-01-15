@@ -20,7 +20,7 @@ class PostmanClient {
   private get client () {
     return axios.create({
       baseURL: 'https://api.getpostman.com/',
-      headers: { 'X-Api-Key': this.apiKey }
+      headers: { 'X-Api-Key': this.apiKey },
     })
   }
 
