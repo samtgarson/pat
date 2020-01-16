@@ -31,11 +31,12 @@ describe('PostmanClient', () => {
 
     it('returns the collection', () => {
       const collection = {} as Collection
+      const expected = { uid: id }
 
       const response = client.collection(id)
       mockAxios.mockResponse({ data: { collection }})
 
-      return expect(response).resolves.toEqual(collection)
+      return expect(response).resolves.toEqual(expected)
     })
   })
 

@@ -7,26 +7,22 @@ export interface BaseCollectionAttributes {
 export interface Collection {
   uid:      string;
   info:     Info;
-  item:     CollectionItem[];
-  auth:     CollectionAuth;
+  item:     Item[];
+  auth:     Auth;
   event:    Event[];
   variable: Oauth2Element[];
 }
 
-export interface CollectionAuth {
+export interface Auth {
   type:   string;
-  oauth2: Oauth2Element[];
+  oauth2?: Oauth2Element[];
 }
 
 export interface Oauth2Element {
   key:   string;
   value: string;
-  type:  VariableType;
+  type:  string;
   id?:   string;
-}
-
-export enum VariableType {
-  String = "string",
 }
 
 export interface Event {
@@ -47,14 +43,6 @@ export interface Info {
   schema:      string;
 }
 
-export interface CollectionItem {
-  name:        string;
-  item?:       Item[];
-  _postman_id: string;
-  request?:    Request;
-  response?:   Response[];
-}
-
 export interface Item {
   name:                     string;
   _postman_id:              string;
@@ -66,61 +54,40 @@ export interface Item {
 }
 
 export interface Request {
-  auth:         RequestAuth;
+  auth?:        Auth;
   body?:        Body;
   description?: string;
   header:       Header[];
-  method:       Method;
+  method:       any;
   url:          RequestURL;
 }
 
+export type Method = "DELETE" | "GET" | "PATCH" | "POST"
+
 export interface Response {
-  _postman_previewlanguage?: PostmanPreviewlanguage;
-  boey?:                     string;
+  _postman_previewlanguage?: string;
+  body?:                     string;
   code?:                     number;
   cookie:                    any[];
   header?:                   Header[];
   id:                        string;
   name:                      string;
-  originalRequest:           OriginalRequest;
+  originalRequest:           Request;
   responseTime?:             number;
-  status?:                   Status;
-}
-
-export interface RequestAuth {
-  type: AuthType;
-}
-
-export enum AuthType {
-  Noauth = "noauth",
+  status?:                   string;
 }
 
 export interface Body {
-  mode: Mode;
+  mode: string;
   raw:  string;
-}
-
-export enum Mode {
-  Raw = "raw",
-}
-
-export enum Method {
-  Delete = "DELETE",
-  Get = "GET",
-  Patch = "PATCH",
-  Post = "POST",
 }
 
 export interface RequestURL {
   raw:       string;
-  host:      Host[];
+  host:      string[];
   path:      string[];
   variable?: URLVariable[];
   query?:    Header[];
-}
-
-export enum Host {
-  BaseURL = "{{baseUrl}}",
 }
 
 export interface Header {
@@ -133,29 +100,13 @@ export interface URLVariable {
   id:          string;
   key:         string;
   value:       string;
-  type:        VariableType;
+  type:        string;
   description: Description;
 }
 
 export interface Description {
   content: string;
-  type:    DescriptionType;
-}
-
-export enum DescriptionType {
-  TextPlain = "text/plain",
-}
-
-
-export enum PostmanPreviewlanguage {
-  Text = "text",
-}
-
-export interface OriginalRequest {
-  method: Method;
-  header: Header[];
-  url:    RequestURL;
-  body?:  Body;
+  type:    string;
 }
 
 export enum Status {

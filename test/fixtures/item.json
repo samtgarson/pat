@@ -1,0 +1,1236 @@
+{
+        "name": "Event Bookings",
+        "item": [
+          {
+            "name": "All Event Bookings",
+            "_postman_id": "1b82f8f4-c7d0-401c-ae04-829671768126",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "authorization",
+                  "value": ""
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/events/bookings?filter[event_type]=<string>,<string>&per_page=10&page=1&filter[starts_at][from]=<dateTime>&filter[starts_at][to]=<dateTime>&filter[ends_at][from]=<dateTime>&filter[state]=<string>,<string>&include=<string>,<string>",
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "path": [
+                  "events",
+                  "bookings"
+                ],
+                "query": [
+                  {
+                    "key": "filter[event_type]",
+                    "value": "<string>,<string>",
+                    "description": "Filters the results by event type\n"
+                  },
+                  {
+                    "key": "per_page",
+                    "value": "10",
+                    "description": "The number of items to return per page ( default 10 )"
+                  },
+                  {
+                    "key": "page",
+                    "value": "1",
+                    "description": "the page number, starts with 1"
+                  },
+                  {
+                    "key": "filter[starts_at][from]",
+                    "value": "<dateTime>",
+                    "description": "Start time start range"
+                  },
+                  {
+                    "key": "filter[starts_at][to]",
+                    "value": "<dateTime>",
+                    "description": "Start time end range"
+                  },
+                  {
+                    "key": "filter[ends_at][from]",
+                    "value": "<dateTime>",
+                    "description": "End time from range"
+                  },
+                  {
+                    "key": "filter[state]",
+                    "value": "<string>,<string>",
+                    "description": "Filters event bookings by state.\n"
+                  },
+                  {
+                    "key": "include",
+                    "value": "<string>,<string>",
+                    "description": "A list of resources to include"
+                  }
+                ]
+              }
+            },
+            "response": [
+              {
+                "id": "1ce23058-103b-4706-bc11-c5e6765dd8a9",
+                "name": "Bad request",
+                "originalRequest": {
+                  "method": "GET",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?filter[event_type]=<string>,<string>&per_page=10&page=1&filter[starts_at][from]=<dateTime>&filter[starts_at][to]=<dateTime>&filter[ends_at][from]=<dateTime>&filter[state]=<string>,<string>&include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "filter[event_type]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "per_page",
+                        "value": "10"
+                      },
+                      {
+                        "key": "page",
+                        "value": "1"
+                      },
+                      {
+                        "key": "filter[starts_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[starts_at][to]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[ends_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[state]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "Bad Request",
+                "code": 400,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "47e8adb8-e328-4a52-ad28-628570919be8",
+                "name": "Returns all event bookings matching filters.",
+                "originalRequest": {
+                  "method": "GET",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?filter[event_type]=<string>,<string>&per_page=10&page=1&filter[starts_at][from]=<dateTime>&filter[starts_at][to]=<dateTime>&filter[ends_at][from]=<dateTime>&filter[state]=<string>,<string>&include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "filter[event_type]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "per_page",
+                        "value": "10"
+                      },
+                      {
+                        "key": "page",
+                        "value": "1"
+                      },
+                      {
+                        "key": "filter[starts_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[starts_at][to]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[ends_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[state]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "OK",
+                "code": 200,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"meta\": {\n  \"per_page\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"total_pages\": \"<integer>\"\n },\n \"data\": [\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"member_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"booking_type\": \"<string>\",\n    \"held_until\": \"<dateTime>\",\n    \"failure\": {\n     \"code\": \"<string>\"\n    },\n    \"cancellable_until\": \"<dateTime>\",\n    \"number_of_guests\": \"<integer>\"\n   },\n   \"relationships\": {\n    \"event\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue.house\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue.hotel\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"reservations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  },\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"member_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"booking_type\": \"<string>\",\n    \"held_until\": \"<dateTime>\",\n    \"failure\": {\n     \"code\": \"<string>\"\n    },\n    \"cancellable_until\": \"<dateTime>\",\n    \"number_of_guests\": \"<integer>\"\n   },\n   \"relationships\": {\n    \"event\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue.house\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue.hotel\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"reservations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  }\n ],\n \"included\": [\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  },\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  }\n ]\n}"
+              },
+              {
+                "id": "48da21f2-b4ed-4576-9897-39d79f84f658",
+                "name": "Unauthorized",
+                "originalRequest": {
+                  "method": "GET",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?filter[event_type]=<string>,<string>&per_page=10&page=1&filter[starts_at][from]=<dateTime>&filter[starts_at][to]=<dateTime>&filter[ends_at][from]=<dateTime>&filter[state]=<string>,<string>&include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "filter[event_type]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "per_page",
+                        "value": "10"
+                      },
+                      {
+                        "key": "page",
+                        "value": "1"
+                      },
+                      {
+                        "key": "filter[starts_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[starts_at][to]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[ends_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[state]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "Unauthorized",
+                "code": 401,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "b175ae71-6fdf-4e2d-8fc3-8449f983ed74",
+                "name": "Unexpected error",
+                "originalRequest": {
+                  "method": "GET",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?filter[event_type]=<string>,<string>&per_page=10&page=1&filter[starts_at][from]=<dateTime>&filter[starts_at][to]=<dateTime>&filter[ends_at][from]=<dateTime>&filter[state]=<string>,<string>&include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "filter[event_type]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "per_page",
+                        "value": "10"
+                      },
+                      {
+                        "key": "page",
+                        "value": "1"
+                      },
+                      {
+                        "key": "filter[starts_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[starts_at][to]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[ends_at][from]",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "key": "filter[state]",
+                        "value": "<string>,<string>"
+                      },
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "Internal Server Error",
+                "code": 500,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              }
+            ]
+          },
+          {
+            "name": "Create an Event Booking",
+            "_postman_id": "82c212d8-7848-4f84-ad1c-20b01c660100",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "authorization",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/events/bookings?include=<string>,<string>",
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "path": [
+                  "events",
+                  "bookings"
+                ],
+                "query": [
+                  {
+                    "key": "include",
+                    "value": "<string>,<string>",
+                    "description": "A list of resources to include"
+                  }
+                ]
+              }
+            },
+            "response": [
+              {
+                "id": "2507e881-0750-4131-9438-5eab57656f79",
+                "name": "Event successfully booked.",
+                "originalRequest": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "Created",
+                "code": 201,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"data\": {\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"attributes\": {\n   \"member_id\": \"<string>\",\n   \"created_at\": \"<dateTime>\",\n   \"state\": \"<string>\",\n   \"booking_type\": \"<string>\",\n   \"held_until\": \"<dateTime>\",\n   \"failure\": {\n    \"code\": \"<string>\"\n   },\n   \"cancellable_until\": \"<dateTime>\",\n   \"number_of_guests\": \"<integer>\"\n  },\n  \"relationships\": {\n   \"event\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue.house\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue.hotel\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"reservations\": {\n    \"data\": [\n     {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     },\n     {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    ]\n   }\n  }\n },\n \"included\": [\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  },\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  }\n ]\n}"
+              },
+              {
+                "id": "6102dc5d-bef6-422f-bd51-95b3d351f032",
+                "name": "Unexpected error",
+                "originalRequest": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "Internal Server Error",
+                "code": 500,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "c1d80a95-cb95-4775-9b0c-cae32ef7e0bf",
+                "name": "Unauthorized",
+                "originalRequest": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "Unauthorized",
+                "code": 401,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "f331f244-8632-49f2-96ba-c83a250b9aa0",
+                "name": "Bad request",
+                "originalRequest": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings?include=<string>,<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings"
+                    ],
+                    "query": [
+                      {
+                        "key": "include",
+                        "value": "<string>,<string>"
+                      }
+                    ]
+                  }
+                },
+                "status": "Bad Request",
+                "code": 400,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              }
+            ]
+          },
+          {
+            "name": "Cancel an Event Booking",
+            "_postman_id": "02d1bb22-1d7c-4551-a99f-17ab8592ed69",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "authorization",
+                  "value": ""
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/events/bookings/:booking_id",
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "path": [
+                  "events",
+                  "bookings",
+                  ":booking_id"
+                ],
+                "variable": [
+                  {
+                    "id": "fe8bb55c-1ea7-497e-ad27-f319f5c27033",
+                    "key": "booking_id",
+                    "value": "<string>",
+                    "type": "string",
+                    "description": {
+                      "content": "",
+                      "type": "text/plain"
+                    }
+                  }
+                ]
+              }
+            },
+            "response": [
+              {
+                "id": "1c6d2341-ee36-49a3-85b7-c31b6f87d0d0",
+                "name": "Booking succesfully cancelled.",
+                "originalRequest": {
+                  "method": "DELETE",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "No Content",
+                "code": 204,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": ""
+              },
+              {
+                "id": "ba30a65f-480c-4f81-af33-241d633edb21",
+                "name": "Bad request",
+                "originalRequest": {
+                  "method": "DELETE",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "Bad Request",
+                "code": 400,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "c6350a09-3444-4083-bfbb-4a27413c237e",
+                "name": "Unexpected error",
+                "originalRequest": {
+                  "method": "DELETE",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "Internal Server Error",
+                "code": 500,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "d7739954-13f6-4b8c-85bb-a6934753991d",
+                "name": "Unauthorized",
+                "originalRequest": {
+                  "method": "DELETE",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    }
+                  ],
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "Unauthorized",
+                "code": 401,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              }
+            ]
+          },
+          {
+            "name": "Swap an Event Booking",
+            "_postman_id": "e6663be6-84fb-4804-8049-061302c71fb1",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PATCH",
+              "header": [
+                {
+                  "key": "authorization",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n    }\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/events/bookings/:booking_id/relationships/events",
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "path": [
+                  "events",
+                  "bookings",
+                  ":booking_id",
+                  "relationships",
+                  "events"
+                ],
+                "variable": [
+                  {
+                    "id": "b0924e58-8048-497c-acd9-4a816604d922",
+                    "key": "booking_id",
+                    "value": "<string>",
+                    "type": "string",
+                    "description": {
+                      "content": "",
+                      "type": "text/plain"
+                    }
+                  }
+                ]
+              }
+            },
+            "response": [
+              {
+                "id": "0139be65-2716-4c48-9d1a-d7ee24b15bb2",
+                "name": "Bad request",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>/relationships/events",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>",
+                      "relationships",
+                      "events"
+                    ]
+                  }
+                },
+                "status": "Bad Request",
+                "code": 400,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "4fcc22a8-46cc-4b7e-b3c1-3cf0af3942f1",
+                "name": "Unexpected error",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>/relationships/events",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>",
+                      "relationships",
+                      "events"
+                    ]
+                  }
+                },
+                "status": "Internal Server Error",
+                "code": 500,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "8ba02141-528c-4987-b020-d5243b728c5c",
+                "name": "Successfully updated - returns the updated booking",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>/relationships/events",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>",
+                      "relationships",
+                      "events"
+                    ]
+                  }
+                },
+                "status": "OK",
+                "code": 200,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"data\": {\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"attributes\": {\n   \"member_id\": \"<string>\",\n   \"created_at\": \"<dateTime>\",\n   \"state\": \"<string>\",\n   \"booking_type\": \"<string>\",\n   \"held_until\": \"<dateTime>\",\n   \"failure\": {\n    \"code\": \"<string>\"\n   },\n   \"cancellable_until\": \"<dateTime>\",\n   \"number_of_guests\": \"<integer>\"\n  },\n  \"relationships\": {\n   \"event\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue.house\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue.hotel\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"reservations\": {\n    \"data\": [\n     {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     },\n     {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    ]\n   }\n  }\n },\n \"included\": [\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  },\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  }\n ]\n}"
+              },
+              {
+                "id": "e49963fa-ef29-4c1d-933c-f878dfe0f492",
+                "name": "Unauthorized",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>/relationships/events",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>",
+                      "relationships",
+                      "events"
+                    ]
+                  }
+                },
+                "status": "Unauthorized",
+                "code": 401,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              }
+            ]
+          },
+          {
+            "name": "Update an Event Booking",
+            "_postman_id": "f244fce1-976e-453f-92e0-48f9ebfe7dd8",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PATCH",
+              "header": [
+                {
+                  "key": "authorization",
+                  "value": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"state\": \"<string>\",\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/events/bookings/:booking_id",
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "path": [
+                  "events",
+                  "bookings",
+                  ":booking_id"
+                ],
+                "variable": [
+                  {
+                    "id": "4d4f0eb8-dcb7-4fe3-a92a-3b4a4838cded",
+                    "key": "booking_id",
+                    "value": "<string>",
+                    "type": "string",
+                    "description": {
+                      "content": "",
+                      "type": "text/plain"
+                    }
+                  }
+                ]
+              }
+            },
+            "response": [
+              {
+                "id": "9612571d-f569-4282-a031-135749d040b3",
+                "name": "Bad request",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"state\": \"<string>\",\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "Bad Request",
+                "code": 400,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "9678bada-b0bf-4749-bc23-d0cdc83b9076",
+                "name": "Unauthorized",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"state\": \"<string>\",\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "Unauthorized",
+                "code": 401,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              },
+              {
+                "id": "dcd59ed8-11eb-476e-890c-9a2fa9c8dbf8",
+                "name": "Successfully updated - returns the updated card information",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"state\": \"<string>\",\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "OK",
+                "code": 200,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"data\": {\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"attributes\": {\n   \"member_id\": \"<string>\",\n   \"created_at\": \"<dateTime>\",\n   \"state\": \"<string>\",\n   \"booking_type\": \"<string>\",\n   \"held_until\": \"<dateTime>\",\n   \"failure\": {\n    \"code\": \"<string>\"\n   },\n   \"cancellable_until\": \"<dateTime>\",\n   \"number_of_guests\": \"<integer>\"\n  },\n  \"relationships\": {\n   \"event\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue.house\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"venue.hotel\": {\n    \"data\": {\n     \"id\": \"<string>\",\n     \"type\": \"<string>\"\n    }\n   },\n   \"reservations\": {\n    \"data\": [\n     {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     },\n     {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    ]\n   }\n  }\n },\n \"included\": [\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  },\n  {\n   \"id\": \"<string>\",\n   \"type\": \"<string>\",\n   \"attributes\": {\n    \"name\": \"<string>\",\n    \"starts_at\": \"<dateTime>\",\n    \"ends_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"bookable\": \"<string>\",\n    \"description\": \"<string>\",\n    \"address\": \"<string>\",\n    \"postponed\": \"<boolean>\",\n    \"price_cents\": \"<integer>\",\n    \"price_currency\": \"<string>\",\n    \"has_waiting_list\": \"<boolean>\",\n    \"open_for_booking_at\": \"<string>\",\n    \"max_guests_per_booking\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"images\": {\n     \"small\": \"<uri>\",\n     \"medium\": \"<uri>\",\n     \"large\": \"<uri>\",\n     \"xlarge\": \"<uri>\"\n    },\n    \"is_offsite\": \"<boolean>\",\n    \"has_lottery\": \"<boolean>\",\n    \"draw_lottery_at\": \"<dateTime>\",\n    \"lottery_drawn\": \"<boolean>\",\n    \"cancellable_until\": \"<dateTime>\",\n    \"allowed_to_book\": \"<boolean>\",\n    \"resource\": \"<object>\",\n    \"location\": \"<object>\",\n    \"links\": [\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     },\n     {\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n     }\n    ],\n    \"image\": \"<object>\",\n    \"tickets\": {\n     \"available\": \"<integer>\",\n     \"total\": \"<integer>\"\n    },\n    \"is_ticketless\": \"<boolean>\",\n    \"send_booking_confirmation_at\": \"<dateTime>\",\n    \"cancel_unconfirmed_bookings_at\": \"<dateTime>\"\n   },\n   \"relationships\": {\n    \"booking\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"resource\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"venue\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"film\": {\n     \"data\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n     }\n    },\n    \"translations\": {\n     \"data\": [\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"type\": \"<string>\"\n      }\n     ]\n    }\n   }\n  }\n ]\n}"
+              },
+              {
+                "id": "ebd85b98-29f4-401a-a2dc-3ecad5cc539c",
+                "name": "Unexpected error",
+                "originalRequest": {
+                  "method": "PATCH",
+                  "header": [
+                    {
+                      "key": "authorization",
+                      "value": ""
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"data\": {\n        \"type\": \"<string>\",\n        \"attributes\": {\n            \"state\": \"<string>\",\n            \"guests\": [\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"email\": \"<string>\",\n                    \"phone\": \"<string>\"\n                }\n            ]\n        },\n        \"relationships\": {\n            \"event\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            },\n            \"payment_card\": {\n                \"data\": {\n                    \"id\": \"<string>\",\n                    \"type\": \"<string>\"\n                }\n            }\n        }\n    }\n}"
+                  },
+                  "url": {
+                    "raw": "{{baseUrl}}/events/bookings/<string>",
+                    "host": [
+                      "{{baseUrl}}"
+                    ],
+                    "path": [
+                      "events",
+                      "bookings",
+                      "<string>"
+                    ]
+                  }
+                },
+                "status": "Internal Server Error",
+                "code": 500,
+                "_postman_previewlanguage": "text",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "cookie": [],
+                "responseTime": null,
+                "body": "{\n \"errors\": [\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  },\n  {\n   \"code\": \"<string>\",\n   \"id\": \"<string>\",\n   \"detail\": \"<string>\"\n  }\n ]\n}"
+              }
+            ]
+          }
+        ],
+        "_postman_id": "bc314864-8f45-4850-9371-02396c4bf578"
+      }
