@@ -11,9 +11,12 @@
   "dependencies": {
     "axios": "^0.19.1",
     "commander": "^4.1.0",
+    "conf": "^6.2.0",
     "ink": "^2.6.0",
+    "ink-confirm-input": "^2.0.0",
     "ink-select-input": "^3.1.2",
     "ink-spinner": "^3.0.1",
+    "ink-text-input": "^3.2.2",
     "minimist-options": "^4.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

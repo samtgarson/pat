@@ -5,15 +5,16 @@ type SectionProps = {
   title: string;
 }
 
+export const SectionTitle: FunctionComponent<SectionProps> = ({ title }) => (
+  <Text><Color grey>{ '>' }</Color> <Color yellow>{ title }</Color></Text>
+)
+
+
 const Section: FunctionComponent<SectionProps> = ({ title, children }) => (
   <Fragment>
-    <Text><Color grey>{ '>' }</Color> <Color yellow>{ title }</Color></Text>
+    <SectionTitle title={title} />
     { children }
   </Fragment>
 )
-
-/* Section.propTypes = { */
-/*   title: PropTypes.string */
-/* } */
 
 export default Section

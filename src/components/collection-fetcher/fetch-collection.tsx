@@ -1,8 +1,7 @@
 import PostmanClient from "@/src/services/postman-client"
-import { FunctionComponent, useEffect, useContext } from "react"
+import React, { FunctionComponent, useEffect } from "react"
 import Loader from "../util/loader"
-import React from "react"
-import { ErrorContext } from "../util/error"
+import { useGlobal } from "@/src/services/global-context"
 
 type FetchCollectionProps = {
   client: PostmanClient,
@@ -11,12 +10,12 @@ type FetchCollectionProps = {
 }
 
 export const FetchCollection: FunctionComponent<FetchCollectionProps> = ({ client, set, id }) => {
-  const { setError } = useContext(ErrorContext)
+  const { setError } = useGlobal()
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        const collection  = await client.collection(id)
+        const collection = await client.collection(id)
         set(collection)
       } catch (e) { setError(e) }
     }
@@ -25,5 +24,6 @@ export const FetchCollection: FunctionComponent<FetchCollectionProps> = ({ clien
   }, [])
 
   return <Loader>Fetching your collection</Loader>
+
 }
 

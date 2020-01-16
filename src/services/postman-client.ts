@@ -24,9 +24,9 @@ class PostmanClient {
     })
   }
 
-  async collection (id: string) {
-    const { data: { collection } } = await this.client.get<CollectionResponse>(`/collections/${id}`)
-    return collection
+  async collection (uid: string) {
+    const { data: { collection } } = await this.client.get<CollectionResponse>(`/collections/${uid}`)
+    return { ...collection, uid }
   }
 
   async workspaces () {

@@ -3,7 +3,6 @@ import Commander from 'commander'
 import React from 'react'
 import { render } from 'ink'
 import App from './app'
-import { AppOptions } from '@/types/options'
 
 const cmd = new Commander.Command()
 
@@ -14,10 +13,10 @@ cmd
   .name('pat')
   .version(pkg.version)
   .description(pkg.description)
-  .requiredOption('-k, --apiKey <apiKey>', 'Your Postman API key')
-  .action(async ({ apiKey }: AppOptions) => {
+  .option('-k, --apiKey <apiKey>', 'Your Postman API key')
+  .action(async () => {
     const { waitUntilExit } = render(
-      <App apiKey={ apiKey }/>,
+      <App />,
       { debug: !!process.env.PAT_DEBUG }
     )
     return waitUntilExit

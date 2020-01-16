@@ -1,20 +1,34 @@
-import {BaseCollectionAttributes} from "@/types/postman/collection"
-import {FunctionComponent} from "react"
+import { BaseCollectionAttributes } from "@/types/postman/collection"
+import { FunctionComponent } from "react"
 import Section from "@/src/components/util/section"
 import React from "react"
-import Select from 'ink-select-input'
+import Select, { ItemProps } from 'ink-select-input'
+import { NEW_COLLECTION } from '@/src/constants'
+import {StoredCollection} from "@/src/services/global-context"
+import {Color} from "ink"
 
 type ChooseCollectionProps = {
-  collections: BaseCollectionAttributes[],
-  set: Function
+  collections: Extract<StoredCollection[], BaseCollectionAttributes[]>,
+  set: Function,
+  allowNew: boolean
 }
 
-export const ChooseCollection: FunctionComponent<ChooseCollectionProps> = ({ set, collections }) => {
+const NEW_COLLECTION_LABEL = 'Add new collection'
+
+const Item: FunctionComponent<ItemProps> = ({isSelected, label}) => (
+	<Color blue={isSelected}  gray={label === NEW_COLLECTION_LABEL}>
+		{label}
+	</Color>
+)
+
+export const ChooseCollection: FunctionComponent<ChooseCollectionProps> = ({ set, collections, allowNew = false }) => {
   const collectionItems = collections.map(c => ({ value: c.uid, label: c.name }))
+
+  if (allowNew) collectionItems.push({ value: NEW_COLLECTION, label: NEW_COLLECTION_LABEL})
 
   return (
     <Section title="Select collection:">
-      <Select items={ collectionItems } onSelect={ c => set(c.value) } />
+      <Select itemComponent={Item} items={ collectionItems } onSelect={c => set(c.value)} />
     </Section>
   )
 }

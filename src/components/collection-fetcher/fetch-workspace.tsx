@@ -1,7 +1,7 @@
-import React, { FunctionComponent, useEffect, useContext } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import PostmanClient from '@/src/services/postman-client'
 import Loader from '@/src/components/util/loader'
-import { ErrorContext } from '@/src/components/util/error'
+import { useGlobal } from "@/src/services/global-context"
 import PatError from '@/src/services/pat-error'
 
 type FetchWorkspaceProps = {
@@ -11,7 +11,7 @@ type FetchWorkspaceProps = {
 }
 
 export const FetchWorkspace: FunctionComponent<FetchWorkspaceProps> = ({ client, set, id }) => {
-  const { setError } = useContext(ErrorContext)
+  const { setError } = useGlobal()
 
   useEffect(() => {
     const fetch = async () => {
