@@ -4,6 +4,8 @@
 
 Pat is an interactive Postman CLI built with [Ink](https://github.com/vadimdemedes/ink).
 
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsamtgarson%2Fpat%2Fbadge&style=flat)](https://actions-badge.atrox.dev/samtgarson/pat/goto)
+
 ## Why?
 
 I was bummed out to find one of the only things I couldn't use after moving to an iPad as my daily development machine was Postman, so I'm trying to build a command line replacement. _Currently Pat only supports collections available on the Postman Pro API. PR's welcome to improve this._

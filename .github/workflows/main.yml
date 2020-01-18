@@ -1,0 +1,19 @@
+name: main
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - uses: actions/checkout@v1
+        name: Checkout
+      - uses: actions/setup-node@v1
+        name: Set Node version
+        with:
+          node-version: '12.x'
+      - run: npm ci
+        name: Install Dependencies
+      - run: npm t
+        name: Test
+
