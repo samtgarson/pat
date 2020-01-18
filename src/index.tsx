@@ -13,7 +13,6 @@ cmd
   .name('pat')
   .version(pkg.version)
   .description(pkg.description)
-  .option('-k, --apiKey <apiKey>', 'Your Postman API key')
   .action(async () => {
     const { waitUntilExit } = render(
       <App />,

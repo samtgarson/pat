@@ -15,8 +15,8 @@ type ChooseCollectionProps = {
 
 const NEW_COLLECTION_LABEL = 'Add new collection'
 
-const Item: FunctionComponent<ItemProps> = ({isSelected, label}) => (
-	<Color blue={isSelected}  gray={label === NEW_COLLECTION_LABEL}>
+const Item: FunctionComponent<ItemProps> = ({ label}) => (
+	<Color gray={label === NEW_COLLECTION_LABEL}>
 		{label}
 	</Color>
 )

@@ -9,7 +9,6 @@ export const SectionTitle: FunctionComponent<SectionProps> = ({ title }) => (
   <Text><Color grey>{ '>' }</Color> <Color yellow>{ title }</Color></Text>
 )
 
-
 const Section: FunctionComponent<SectionProps> = ({ title, children }) => (
   <Fragment>
     <SectionTitle title={title} />

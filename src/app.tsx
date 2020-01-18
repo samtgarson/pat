@@ -17,7 +17,7 @@ const App: FunctionComponent<AppOptions> = () => {
   return (
     <GlobalContext.Provider value={ globalContext }>
       { collection
-        ? <Runner collection={collection} />
+        ? <Runner collection={collection} back={() => setCollection(undefined)} />
         : <CollectionFetcher set={ setCollection } />
       }
     </GlobalContext.Provider>
