@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "bin": "cli.js",
-  "description": "An interactive Postman CLI",
+  "description": "Postman on the command line",
   "scripts": {
     "dev": "tsc --watch -p ./tsconfig.build.json",
     "build": "tsc -p ./tsconfig.build.json"
