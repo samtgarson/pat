@@ -91,7 +91,7 @@ export interface RequestURL {
 }
 
 export interface Header {
-  description?: string;
+  description?: string | Description;
   key:          string;
   value:        string;
 }

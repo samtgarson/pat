@@ -7,5 +7,9 @@ export class Request {
     public request: RawRequest,
     public responses: RawResponse[]
   ) {}
+
+  get description () {
+    return this.request.description
+  }
 }
 

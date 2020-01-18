@@ -11,8 +11,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["*"]
-    }
+    },
+    "typeRoots": ["node_modules/@types", "types/stubs"]
   },
-  "exclude": ["dist", "./*.d.ts"],
+  "exclude": ["dist"],
   "include": ["src", "test"]
 }

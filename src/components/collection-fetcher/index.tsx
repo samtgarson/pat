@@ -28,9 +28,6 @@ const CollectionFetcher: FunctionComponent<CollectionFetcherProps> = ({ set }) =
   const [selected, setSelected] = useState<Collection>()
   const client = useMemo(() => apiKey && new PostmanClient(apiKey), [apiKey])
 
-  useEffect(() => {
-  }, [collectionID])
-
   const done = useCallback(() => {
     set(selected)
   }, [selected])

@@ -5,6 +5,7 @@ import { Collection } from '@/types/postman/collection'
 import { AppOptions } from '@/types/options'
 import { ErrorMessage } from '@/src/components/util/error'
 import { GlobalContext, config } from '@/src/services/global-context'
+import { Runner } from '@/src/components/runner'
 
 const App: FunctionComponent<AppOptions> = () => {
   const [collection, setCollection] = useState<Collection>()
@@ -16,9 +17,7 @@ const App: FunctionComponent<AppOptions> = () => {
   return (
     <GlobalContext.Provider value={ globalContext }>
       { collection
-        ? <Text>
-            Using Collection <Color green>{ collection.info.name }</Color>
-          </Text>
+        ? <Runner collection={collection} />
         : <CollectionFetcher set={ setCollection } />
       }
     </GlobalContext.Provider>
