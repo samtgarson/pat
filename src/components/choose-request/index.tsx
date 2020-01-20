@@ -2,20 +2,18 @@ import { FunctionComponent, useState, Fragment } from "react"
 import { List } from './list'
 import React from "react"
 import {Box, Color, useInput} from "ink"
-import {Collection} from "@/types/postman/collection"
 import TextInput from 'ink-text-input'
-import {CollectionPages} from "@/src/constants"
+import {Pages} from "@/src/constants"
+import { GlobalState } from "@/src/services/global-context"
 
-type ChooseRequestProps = {
-  collection: Collection
-  go: (page: CollectionPages) => void
-}
+export const ChooseRequest: FunctionComponent = () => {
+  const { go, state: { collection } } = GlobalState.useContainer()
+  if (!collection) return null
 
-export const ChooseRequest: FunctionComponent<ChooseRequestProps> = ({ collection, go }) => {
   const [filter, setFilter] = useState('')
 
   useInput(input => {
-    if (input === '?') return go(CollectionPages.Menu)
+    if (input === '?') return go(Pages.Menu)
   })
 
   return <Fragment>

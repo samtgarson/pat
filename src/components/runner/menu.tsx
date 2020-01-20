@@ -1,12 +1,10 @@
 import React, { useCallback } from 'react'
 import { FunctionComponent } from 'react'
 import Select, { ItemProps } from 'ink-select-input'
-import { CollectionPages } from '@/src/constants'
+import { Pages } from '@/src/constants'
 import {Color} from 'ink'
-
-type MenuProps = {
-  go: (route: CollectionPages) => void
-}
+import { GlobalState } from '@/src/services/global-context'
+import Section from '@/src/components/util/section'
 
 enum MenuItems {
   Switch = 'Use another collection',
@@ -20,20 +18,24 @@ const MenuItem: FunctionComponent<ItemProps> = ({ label }) => {
   return <Color {...color}>{ label }</Color>
 }
 
-export const Menu:FunctionComponent<MenuProps> = ({ go }) => {
+export const Menu:FunctionComponent = () => {
+  const { go, state: { collection } } = GlobalState.useContainer()
+
   const onSelect = useCallback(({ value }) => {
     switch (value) {
       case MenuItems.Env:
-        return go(CollectionPages.Env)
+        return go(Pages.Env)
       case MenuItems.Delete:
-        return go(CollectionPages.DeleteCollection)
+        return go(Pages.DeleteCollection)
       case MenuItems.Back:
-        return go(CollectionPages.List)
+        return go(Pages.List)
       case MenuItems.Switch:
-        return go(CollectionPages.Home)
+        return go(Pages.Home)
     }
   }, [go])
 
   const items = Object.values(MenuItems).map(v => ({ value: v, label: v }))
-  return <Select onSelect={onSelect} items={items} itemComponent={MenuItem} />
+  return <Section title={ `${collection?.info.name}` }>
+    <Select onSelect={onSelect} items={items} itemComponent={MenuItem} />
+  </Section>
 }

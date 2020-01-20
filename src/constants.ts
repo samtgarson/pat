@@ -1,6 +1,6 @@
 export const NEW_COLLECTION='NEW_COLLECTION'
 
-export enum CollectionPages {
+export enum Pages {
   List = 'LIST',
   Menu = 'MENU',
   Request = 'REQUEST',

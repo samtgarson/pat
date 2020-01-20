@@ -1,31 +1,41 @@
 import { FunctionComponent, useState, useCallback } from "react"
 import { Box } from "ink"
 import { SectionTitle } from "@/src/components/util/section"
-import { useGlobal, StoredCollection } from "@/src/services/global-context"
+import { GlobalState } from '@/src/services/global-context'
 import ConfirmInput from 'ink-confirm-input'
 import React from "react"
-import {Collection} from "@/types/postman/collection"
+import { Collection } from "@/types/postman/collection"
+import { Workspace } from "@/types/postman/workspace"
+import {StoredWorkspace, StoredEnvironment, StoredCollection} from "@/types/config"
 
 type SaveCollectionProps = {
-  collection: Collection,
-  apiKey: string,
+  collection: Collection
+  apiKey: string
   done: Function
+  workspace: Workspace
 }
 
-export const SaveCollection: FunctionComponent<SaveCollectionProps> = ({ collection, apiKey, done }) => {
-  const { config } = useGlobal()
+export const SaveCollection: FunctionComponent<SaveCollectionProps> = ({ collection, workspace, apiKey, done }) => {
+  const { config } = GlobalState.useContainer()
   const [value, setValue] = useState()
-  const key = `collections.${collection.uid}`
-
-  if (config.has(key)) {
-    done()
-    return null
-  }
 
   const onSubmit = useCallback((val: boolean) => {
     if (val) {
-      const toSave: StoredCollection = { apiKey, name: collection.info.name, uid: collection.uid }
-      config.set(key, toSave)
+      const workspaceKey = `workspaces.${workspace.id}`
+      if (!config.has(workspaceKey)) {
+        const storedWorkspace: StoredWorkspace = { id: workspace.id, apiKey, name: workspace.name }
+        config.set(workspaceKey, storedWorkspace)
+      }
+
+      const collectionKey = `collections.${collection.uid}`
+      const collectionToSave: StoredCollection = { name: collection.info.name, uid: collection.uid, workspaceID: workspace.id }
+      config.set(collectionKey, collectionToSave)
+
+      workspace.environments.forEach(e => {
+        const environmentsKey = `environments.${e.uid}`
+        const environmentToSave: StoredEnvironment = { ...e, workspaceID: workspace.id }
+        config.set(environmentsKey, environmentToSave)
+      })
     }
     done()
   }, [value, collection, apiKey])

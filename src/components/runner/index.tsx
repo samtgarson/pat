@@ -1,30 +1,30 @@
 import React from 'react'
-import { Collection } from "@/types/postman/collection"
-import { CollectionPages } from '@/src/constants'
-import { FunctionComponent, useState } from "react"
+import { Pages } from '@/src/constants'
+import { FunctionComponent } from "react"
 import { ChooseRequest } from "../choose-request"
-import { Color, Text } from 'ink'
+import { Color } from 'ink'
 import { Menu } from './menu'
 import {Delete} from '@/src/components/runner/delete'
+import {GlobalState} from '@/src/services/global-context'
+import { ErrorMessage } from '@/src/components/util/error'
+import CollectionFetcher from '@/src/components/collection-fetcher/index'
 
-type RunnerProps = {
-  collection: Collection
-  back: () => void
-}
-
-export const Runner:FunctionComponent<RunnerProps> = ({ collection, back }) => {
-  const [route, go] = useState(CollectionPages.List)
+export const Runner:FunctionComponent = () => {
+  const { state: { error }, route } = GlobalState.useContainer()
+  if (error) return <ErrorMessage error={ error } />
 
   switch (route) {
-    case CollectionPages.List:
-      return <ChooseRequest go={go} collection={collection} />
-    case CollectionPages.Menu:
-      return <Menu go={go} />
-    case CollectionPages.Home:
-      back()
-      return null
-    case CollectionPages.DeleteCollection:
-      return <Delete go={go} collection={collection} />
+    case Pages.Home:
+      return <CollectionFetcher />
+    case Pages.List:
+      return <ChooseRequest />
+    case Pages.Menu:
+      return <Menu />
+    case Pages.DeleteCollection:
+      return <Delete />
+    case Pages.Env:
+      /* return <EditEnvironment /> */
+      return <Color>Edit environment</Color>
     default:
       return <Color>Request</Color>
   }

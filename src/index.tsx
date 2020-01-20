@@ -3,6 +3,7 @@ import Commander from 'commander'
 import React from 'react'
 import { render } from 'ink'
 import App from './app'
+import { GlobalState } from './services/global-context.js'
 
 const cmd = new Commander.Command()
 

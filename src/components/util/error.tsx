@@ -9,6 +9,7 @@ type ErrorMessageProps = {
 const defaultErrorMessage = 'Something went wrong'
 
 export const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({ error }) => {
+  if (process.env.PAT_DEBUG) console.error(error)
   const message = PatError.isPatError(error) ? error.message : defaultErrorMessage
 
   return <Text>
