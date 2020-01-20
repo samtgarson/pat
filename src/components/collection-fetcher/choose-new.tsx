@@ -1,14 +1,14 @@
 import { FunctionComponent, useState, useMemo } from "react"
 import PostmanClient from '@/src/services/postman-client'
-import {FetchWorkspaces} from "@/src/components/collection-fetcher/fetch-workspaces"
+import { FetchWorkspaces } from "@/src/components/collection-fetcher/fetch-workspaces"
 import React from "react"
-import {AskForApiKey} from "@/src/components/collection-fetcher/ask-for-api-key"
-import {BaseWorkspaceAttributes, Workspace} from "@/types/postman/workspace"
-import {ChooseCollection} from "@/src/components/collection-fetcher/choose-collection"
-import {ChooseWorkspace} from "@/src/components/collection-fetcher/choose-workspace"
-import {Collection} from "@/types/postman/collection"
-import {GlobalState} from "@/src/services/global-context"
-import {SaveCollection} from "@/src/components/collection-fetcher/save-collection"
+import { AskForApiKey } from "@/src/components/collection-fetcher/ask-for-api-key"
+import { BaseWorkspaceAttributes, Workspace } from "@/types/postman/workspace"
+import { ChooseCollection } from "@/src/components/collection-fetcher/choose-collection"
+import { ChooseWorkspace } from "@/src/components/collection-fetcher/choose-workspace"
+import { Collection } from "@/types/postman/collection"
+import { GlobalState } from "@/src/services/global-context"
+import { SaveCollection } from "@/src/components/collection-fetcher/save-collection"
 
 type ChooseNewProps = {
   done: (collection: Collection) => void

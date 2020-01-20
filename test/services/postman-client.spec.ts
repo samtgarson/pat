@@ -1,7 +1,7 @@
 import mockAxios from 'jest-mock-axios'
 import PostmanClient from '@/src/services/postman-client'
-import {Collection} from '@/types/postman/collection'
-import {Workspace} from '@/types/postman/workspace'
+import { Collection } from '@/types/postman/collection'
+import { Workspace } from '@/types/postman/workspace'
 
 const apiKey = 'apiKey'
 const id = 'id'
@@ -34,7 +34,7 @@ describe('PostmanClient', () => {
       const expected = { uid: id }
 
       const response = client.collection(id)
-      mockAxios.mockResponse({ data: { collection }})
+      mockAxios.mockResponse({ data: { collection } })
 
       return expect(response).resolves.toEqual(expected)
     })
@@ -51,7 +51,7 @@ describe('PostmanClient', () => {
       const workspaces = [] as Workspace[]
 
       const response = client.workspaces()
-      mockAxios.mockResponse({ data: { workspaces }})
+      mockAxios.mockResponse({ data: { workspaces } })
 
       return expect(response).resolves.toEqual(workspaces)
     })
@@ -68,7 +68,7 @@ describe('PostmanClient', () => {
       const workspace = {} as Workspace
 
       const response = client.workspace(id)
-      mockAxios.mockResponse({ data: { workspace }})
+      mockAxios.mockResponse({ data: { workspace } })
 
       return expect(response).resolves.toEqual(workspace)
     })

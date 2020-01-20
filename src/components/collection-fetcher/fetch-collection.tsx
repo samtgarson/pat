@@ -2,10 +2,10 @@ import PostmanClient from "@/src/services/postman-client"
 import React, { FunctionComponent, useEffect } from "react"
 import Loader from "../util/loader"
 import { GlobalState } from "@/src/services/global-context"
-import {Collection} from "@/types/postman/collection"
+import { Collection } from "@/types/postman/collection"
 
 type FetchCollectionProps = {
-  client: PostmanClient,
+  client: PostmanClient
   set: (collection: Collection) => void
   id: string
 }

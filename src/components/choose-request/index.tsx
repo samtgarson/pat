@@ -1,9 +1,9 @@
 import { FunctionComponent, useState, Fragment } from "react"
 import { List } from './list'
 import React from "react"
-import {Box, Color, useInput} from "ink"
+import { Box, Color, useInput } from "ink"
 import TextInput from 'ink-text-input'
-import {Pages} from "@/src/constants"
+import { Pages } from "@/src/constants"
 import { GlobalState } from "@/src/services/global-context"
 
 export const ChooseRequest: FunctionComponent = () => {

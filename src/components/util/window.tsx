@@ -7,7 +7,7 @@ type WindowProps<T extends Item> = {
   maxHeight: number
   items: T[]
   emptyMessage?: () =>  ReactElement<any>
-  children: (item: T, selected: boolean) => ReactElement<any>;
+  children: (item: T, selected: boolean) => ReactElement<any>
 }
 
 export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T>> => ({ maxHeight, items, emptyMessage = () => {}, children }) => {

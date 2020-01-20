@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { FunctionComponent } from 'react'
 import Select, { ItemProps } from 'ink-select-input'
 import { Pages } from '@/src/constants'
-import {Color} from 'ink'
+import { Color } from 'ink'
 import { GlobalState } from '@/src/services/global-context'
 import Section from '@/src/components/util/section'
 
@@ -18,7 +18,7 @@ const MenuItem: FunctionComponent<ItemProps> = ({ label }) => {
   return <Color {...color}>{ label }</Color>
 }
 
-export const Menu:FunctionComponent = () => {
+export const Menu: FunctionComponent = () => {
   const { go, state: { collection } } = GlobalState.useContainer()
 
   const onSelect = useCallback(({ value }) => {

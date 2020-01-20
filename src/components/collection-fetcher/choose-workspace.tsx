@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState } from "react"
 import { BaseWorkspaceAttributes } from "@/types/postman/workspace"
 import Select from 'ink-select-input'
 import PostmanClient from "@/src/services/postman-client"
-import {FetchWorkspace} from "@/src/components/collection-fetcher/fetch-workspace"
+import { FetchWorkspace } from "@/src/components/collection-fetcher/fetch-workspace"
 
 type ChooseWorkspaceProps = {
   workspaces: BaseWorkspaceAttributes[]

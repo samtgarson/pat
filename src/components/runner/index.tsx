@@ -4,12 +4,12 @@ import { FunctionComponent } from "react"
 import { ChooseRequest } from "../choose-request"
 import { Color } from 'ink'
 import { Menu } from './menu'
-import {Delete} from '@/src/components/runner/delete'
-import {GlobalState} from '@/src/services/global-context'
+import { Delete } from '@/src/components/runner/delete'
+import { GlobalState } from '@/src/services/global-context'
 import { ErrorMessage } from '@/src/components/util/error'
 import CollectionFetcher from '@/src/components/collection-fetcher/index'
 
-export const Runner:FunctionComponent = () => {
+export const Runner: FunctionComponent = () => {
   const { state: { error }, route } = GlobalState.useContainer()
   if (error) return <ErrorMessage error={ error } />
 

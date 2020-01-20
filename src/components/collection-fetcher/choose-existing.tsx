@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useMemo } from "react"
 import { GlobalState } from "@/src/services/global-context"
-import {ChooseCollection} from "@/src/components/collection-fetcher/choose-collection"
-import {StoredCollection} from "@/types/config"
-import {Collection} from "@/types/postman/collection"
+import { ChooseCollection } from "@/src/components/collection-fetcher/choose-collection"
+import { StoredCollection } from "@/types/config"
+import { Collection } from "@/types/postman/collection"
 
 type ChooseExistingProps = {
   done: (collection: Collection) => void

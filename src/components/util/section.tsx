@@ -2,7 +2,7 @@ import React, { FunctionComponent, Fragment }  from 'react'
 import { Text, Color } from 'ink'
 
 type SectionProps = {
-  title: string;
+  title: string
 }
 
 export const SectionTitle: FunctionComponent<SectionProps> = ({ title }) => (

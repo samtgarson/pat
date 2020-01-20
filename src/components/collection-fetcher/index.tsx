@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useState } from 'react'
 import { GlobalState } from '@/src/services/global-context'
-import {ChooseExisting} from '@/src/components/collection-fetcher/choose-existing'
-import {ChooseNew} from '@/src/components/collection-fetcher/choose-new'
-import {Collection} from '@/types/postman/collection'
-import {Pages} from '@/src/constants'
+import { ChooseExisting } from '@/src/components/collection-fetcher/choose-existing'
+import { ChooseNew } from '@/src/components/collection-fetcher/choose-new'
+import { Collection } from '@/types/postman/collection'
+import { Pages } from '@/src/constants'
 
 
 const CollectionFetcher: FunctionComponent = () => {

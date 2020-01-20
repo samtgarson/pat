@@ -2,11 +2,11 @@ import PatError from "@/src/services/pat-error"
 import { useState } from "react"
 import { createContainer } from 'unstated-next'
 import Conf from 'conf'
-import {Collection} from "@/types/postman/collection"
-import {Environment} from "@/types/postman/environments"
-import {Pages} from "@/src/constants"
+import { Collection } from "@/types/postman/collection"
+import { Environment } from "@/types/postman/environments"
+import { Pages } from "@/src/constants"
 
-type SetStateFn = (state: { collection?: Collection, environment?: Environment, error?: any }) => void
+type SetStateFn = (state: { collection?: Collection; environment?: Environment; error?: any }) => void
 
 const config = new Conf()
 

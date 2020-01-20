@@ -1,11 +1,11 @@
-import { Collection, Item } from "@/types/postman/collection";
+import { Collection, Item } from "@/types/postman/collection"
 import { Request } from '@/src/models/request'
 
 export type SearchCandidate = {
   node: Node
   name: string
   description?: string
-  ancestors: string[],
+  ancestors: string[]
   searchText: string
 }
 
@@ -15,7 +15,7 @@ export class Tree {
   public children: Node[]
   public id: string
 
-  constructor(data: Collection | Item) {
+  constructor (data: Collection | Item) {
     const { item } = data
     if (item) this.children = item.map(i => new Node(this, i))
     else this.children = []
@@ -35,7 +35,7 @@ export class Node extends Tree {
   public request?: Request
   public name: string
 
-  constructor(public parent: Node | Tree, data: Item) {
+  constructor (public parent: Node | Tree, data: Item) {
     super(data)
 
     const { request, response, name } = data

@@ -3,15 +3,15 @@ import { Collection } from '@/types/postman/collection'
 import { Workspace, BaseWorkspaceAttributes } from '@/types/postman/workspace'
 
 type CollectionResponse = {
-  collection: Collection;
+  collection: Collection
 }
 
 type WorkspacesResponse = {
-  workspaces: BaseWorkspaceAttributes[];
+  workspaces: BaseWorkspaceAttributes[]
 }
 
 type WorkspaceResponse = {
-  workspace: Workspace;
+  workspace: Workspace
 }
 
 class PostmanClient {
@@ -20,7 +20,7 @@ class PostmanClient {
   private get client () {
     return axios.create({
       baseURL: 'https://api.getpostman.com/',
-      headers: { 'X-Api-Key': this.apiKey },
+      headers: { 'X-Api-Key': this.apiKey }
     })
   }
 

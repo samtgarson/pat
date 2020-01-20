@@ -1,11 +1,11 @@
-import { FunctionComponent, useState, useCallback } from "react";
+import { FunctionComponent, useState, useCallback } from "react"
 import ConfirmInput from 'ink-confirm-input'
-import { GlobalState } from "@/src/services/global-context";
-import { Box, Color, Text } from "ink";
-import React from "react";
-import { SectionTitle } from "@/src/components/util/section";
-import figures from "figures";
-import {Pages} from "@/src/constants";
+import { GlobalState } from "@/src/services/global-context"
+import { Box, Color, Text } from "ink"
+import React from "react"
+import { SectionTitle } from "@/src/components/util/section"
+import figures from "figures"
+import { Pages } from "@/src/constants"
 
 export const Delete: FunctionComponent = () => {
   const { config, go, state: { collection } } = GlobalState.useContainer()

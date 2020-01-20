@@ -4,7 +4,7 @@ import React, { Children } from "react"
 
 type HighlightProps = {
   text: string
-  matches: [number, number][],
+  matches: [number, number][]
   children: (text: string) => any
 }
 
@@ -12,7 +12,7 @@ export const Highlight: FunctionComponent<HighlightProps> = ({ text, matches, ch
   const substrings = []
   let previousEnd = 0
 
-  for (let [start, end] of matches) {
+  for (const [start, end] of matches) {
     const prefix = text.substring(previousEnd, start)
     const match = children(text.substring(start, end))
 

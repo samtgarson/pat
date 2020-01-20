@@ -2,7 +2,7 @@ import { Request as RawRequest, Response as RawResponse } from '@/types/postman/
 import { Node } from './node'
 
 export class Request {
-  constructor(
+  constructor (
     public parent: Node,
     public request: RawRequest,
     public responses: RawResponse[]

@@ -4,9 +4,9 @@ import Section from "@/src/components/util/section"
 import React from "react"
 import Select, { ItemProps } from 'ink-select-input'
 import { NEW_COLLECTION } from '@/src/constants'
-import {Color} from "ink"
+import { Color } from "ink"
 import PostmanClient from "@/src/services/postman-client"
-import {FetchCollection} from "@/src/components/collection-fetcher/fetch-collection"
+import { FetchCollection } from "@/src/components/collection-fetcher/fetch-collection"
 
 type ChooseCollectionProps = {
   collections: BaseCollectionAttributes[]
@@ -28,7 +28,7 @@ export const ChooseCollection: FunctionComponent<ChooseCollectionProps> = ({ set
   const collectionItems = collections.map(c => ({ value: c.uid, label: c.name }))
   const [collectionID, setCollectionID] = useState()
 
-  if (allowNew) collectionItems.push({ value: NEW_COLLECTION, label: NEW_COLLECTION_LABEL})
+  if (allowNew) collectionItems.push({ value: NEW_COLLECTION, label: NEW_COLLECTION_LABEL })
 
   if (collectionID) {
     if (collectionID === NEW_COLLECTION && chooseNew) {

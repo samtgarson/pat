@@ -9,7 +9,7 @@ type FetchWorkspacesProps = {
   set: Function
 }
 
-export const FetchWorkspaces: FunctionComponent<FetchWorkspacesProps> = ({client, set}) => {
+export const FetchWorkspaces: FunctionComponent<FetchWorkspacesProps> = ({ client, set }) => {
   const { state: { setState } } = GlobalState.useContainer()
 
   useEffect(() => {

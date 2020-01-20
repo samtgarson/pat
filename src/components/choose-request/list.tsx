@@ -6,11 +6,11 @@ import { SearchCandidate } from '@/src/models/node'
 import { Color } from 'ink'
 import { QuickScore, QuickScoreResult } from 'quick-score'
 import { WindowFactory } from '@/src/components/util/window'
-import {Result} from './result'
+import { Result } from './result'
 
 type ListProps = {
-  collection: Collection,
-  filter: string,
+  collection: Collection
+  filter: string
 }
 
 const Window = WindowFactory<QuickScoreResult<SearchCandidate>>()

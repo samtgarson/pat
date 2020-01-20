@@ -6,7 +6,7 @@ import ConfirmInput from 'ink-confirm-input'
 import React from "react"
 import { Collection } from "@/types/postman/collection"
 import { Workspace } from "@/types/postman/workspace"
-import {StoredWorkspace, StoredEnvironment, StoredCollection} from "@/types/config"
+import { StoredWorkspace, StoredEnvironment, StoredCollection } from "@/types/config"
 
 type SaveCollectionProps = {
   collection: Collection
