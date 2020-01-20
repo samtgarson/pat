@@ -1,14 +1,14 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent, ReactElement } from "react"
 import { Text } from "ink"
 import React, { Children } from "react"
 
 type HighlightProps = {
   text: string
   matches: [number, number][]
-  children: (text: string) => any
+  children: (text: string) => ReactElement
 }
 
-export const Highlight: FunctionComponent<HighlightProps> = ({ text, matches, children = text => text }) => {
+export const Highlight: FunctionComponent<HighlightProps> = ({ text, matches, children = str => str }) => {
   const substrings = []
   let previousEnd = 0
 

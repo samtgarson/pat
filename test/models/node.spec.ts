@@ -5,6 +5,7 @@ import fixture from '../fixtures/item.json'
 
 const createItem = (): Item => ({
   name: 'name',
+  // eslint-disable-next-line @typescript-eslint/camelcase
   _postman_id: 'uid'
 })
 

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo } from 'react'
+import React, { FunctionComponent } from 'react'
 import { AppOptions } from '@/types/options'
 import { GlobalState } from '@/src/services/global-context'
 import { Runner } from '@/src/components/runner'

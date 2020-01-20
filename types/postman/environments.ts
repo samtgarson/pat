@@ -4,6 +4,12 @@ export interface BaseEnvironmentAttributes {
   uid: string
 }
 
-export interface Environment {
+export type EnvironmentVariable = {
+  enabled: boolean
+  key: string
+  value: string
+}
 
+export interface Environment extends BaseEnvironmentAttributes {
+  values: EnvironmentVariable[]
 }

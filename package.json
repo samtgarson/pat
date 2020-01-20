@@ -4,6 +4,7 @@
   "license": "MIT",
   "bin": "cli.js",
   "description": "Postman on the command line",
+  "private": true,
   "scripts": {
     "dev": "tsc --watch -p ./tsconfig.build.json",
     "build": "tsc -p ./tsconfig.build.json",
@@ -26,7 +27,7 @@
     "unstated-next": "^1.1.0"
   },
   "devDependencies": {
-    "@samtgarson/eslint-config": "^2.0.0",
+    "@samtgarson/eslint-config": "^2.1.0",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.6",
     "@types/react": "^16.9.17",
@@ -92,9 +93,18 @@
     ],
     "rules": {
       "@typescript-eslint/explicit-function-return-type": 0,
-      "@typescript-eslint/member-delimiter-style": [2, { "multiline": { "delimiter": "none" } }],
+      "@typescript-eslint/member-delimiter-style": [
+        2,
+        {
+          "multiline": {
+            "delimiter": "none"
+          }
+        }
+      ],
       "promise/prefer-await-to-then": 1,
-      "react/prop-types": 0
+      "react/prop-types": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-use-before-define": 0
     }
   }
 }

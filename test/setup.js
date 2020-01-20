@@ -1,3 +1,4 @@
+/* eslint-disable */
 const mockAxios = require('jest-mock-axios')
 
 beforeEach(() => {

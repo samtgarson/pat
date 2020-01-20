@@ -6,11 +6,11 @@ type Item = { [key: string]: any }
 type WindowProps<T extends Item> = {
   maxHeight: number
   items: T[]
-  emptyMessage?: () =>  ReactElement<any>
-  children: (item: T, selected: boolean) => ReactElement<any>
+  emptyMessage?: () =>  ReactElement
+  children: (item: T, selected: boolean) => ReactElement
 }
 
-export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T>> => ({ maxHeight, items, emptyMessage = () => {}, children }) => {
+export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T>> => ({ maxHeight, items, emptyMessage = () => '', children }) => {
   const [cursor, setCursor] = useState(0)
   useInput((_input, key) => {
     if (key.downArrow) setCursor(Math.min(cursor + 1, items.length - 1))
