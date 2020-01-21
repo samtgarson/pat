@@ -8,6 +8,7 @@ import { Delete } from '@/src/components/runner/delete'
 import { GlobalState } from '@/src/services/global-context'
 import { ErrorMessage } from '@/src/components/util/error'
 import CollectionFetcher from '@/src/components/collection-fetcher/index'
+import { Request } from '@/src/components/request'
 
 export const Runner: FunctionComponent = () => {
   const { state: { error }, route } = GlobalState.useContainer()
@@ -25,8 +26,10 @@ export const Runner: FunctionComponent = () => {
     case Pages.Env:
       /* return <EditEnvironment /> */
       return <Color>Edit environment</Color>
+    case Pages.Request:
+      return <Request />
     default:
-      return <Color>Request</Color>
+      throw new Error(`Could not match route ${route.path}`)
   }
 }
 
