@@ -7,7 +7,7 @@ import { Pages } from "@/src/constants"
 import { GlobalState } from "@/src/services/global-context"
 
 export const ChooseRequest: FunctionComponent = () => {
-  const { go, state: { collection } } = GlobalState.useContainer()
+  const { route: { go }, state: { collection } } = GlobalState.useContainer()
   if (!collection) return null
 
   const [filter, setFilter] = useState('')

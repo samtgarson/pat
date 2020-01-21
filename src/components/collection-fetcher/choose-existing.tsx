@@ -7,9 +7,10 @@ import { Collection } from "@/types/postman/collection"
 type ChooseExistingProps = {
   done: (collection: Collection) => void
   chooseNew: Function
+  collectionID?: string
 }
 
-export const ChooseExisting: FunctionComponent<ChooseExistingProps> = ({ done, chooseNew }) => {
+export const ChooseExisting: FunctionComponent<ChooseExistingProps> = ({ done, chooseNew, collectionID }) => {
   const { config } = GlobalState.useContainer()
 
   const collections = useMemo(
@@ -23,5 +24,14 @@ export const ChooseExisting: FunctionComponent<ChooseExistingProps> = ({ done, c
     return apiKey
   }
 
-  return <ChooseCollection chooseNew={chooseNew} set={done} allowNew={true} collections={collections} getApiKey={getApiKey}/>
+
+
+  return <ChooseCollection
+    collectionID={collectionID}
+    chooseNew={chooseNew}
+    set={done}
+    allowNew={true}
+    collections={collections}
+    getApiKey={getApiKey}
+  />
 }

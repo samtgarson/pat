@@ -19,7 +19,7 @@ const MenuItem: FunctionComponent<ItemProps> = ({ label }) => {
 }
 
 export const Menu: FunctionComponent = () => {
-  const { go, state: { collection } } = GlobalState.useContainer()
+  const { route: { go }, state: { collection } } = GlobalState.useContainer()
 
   const onSelect = useCallback(({ value }) => {
     switch (value) {

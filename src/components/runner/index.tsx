@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Pages } from '@/src/constants'
 import { FunctionComponent } from "react"
 import { ChooseRequest } from "../choose-request"
@@ -13,7 +13,7 @@ export const Runner: FunctionComponent = () => {
   const { state: { error }, route } = GlobalState.useContainer()
   if (error) return <ErrorMessage error={ error } />
 
-  switch (route) {
+  switch (route.path) {
     case Pages.Home:
       return <CollectionFetcher />
     case Pages.List:

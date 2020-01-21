@@ -8,7 +8,7 @@ import figures from "figures"
 import { Pages } from "@/src/constants"
 
 export const Delete: FunctionComponent = () => {
-  const { config, go, state: { collection } } = GlobalState.useContainer()
+  const { config, route: { go }, state: { collection } } = GlobalState.useContainer()
   if (!collection) return null
 
   const [value, setValue] = useState()

@@ -8,7 +8,10 @@ import { Pages } from "@/src/constants"
 
 type SetStateFn = (state: { collection?: Collection; environment?: Environment; error?: any }) => void
 
+type RouteParams = { [id: string]: any }
+
 const config = new Conf()
+const DEFAULT_ROUTE_PARAMS = { quickStart: true }
 
 const useGlobalState = () => {
   const [environment, setEnvironment] = useState<Environment>()
@@ -27,12 +30,18 @@ const useGlobalState = () => {
   }
 
   const state = { environment, collection, error, setState }
-  const [route, go] = useState<Pages>(Pages.Home)
+  const [routePath, setRoutePath] = useState<Pages>(Pages.Home)
+  const [routeParams, setRouteParams] = useState<RouteParams>(DEFAULT_ROUTE_PARAMS)
+
+  const go = (route: Pages, meta?: RouteParams) => {
+    setRoutePath(route)
+    setRouteParams(meta || {})
+  }
+  const route = { path: routePath, params: routeParams, go }
 
   return {
     state,
     route,
-    go,
     config
   }
 }

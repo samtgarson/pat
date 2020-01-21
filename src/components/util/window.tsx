@@ -13,8 +13,9 @@ type WindowProps<T extends Item> = {
 export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T>> => ({ maxHeight, items, emptyMessage = () => '', children }) => {
   const [cursor, setCursor] = useState(0)
   useInput((_input, key) => {
-    if (key.downArrow) setCursor(Math.min(cursor + 1, items.length - 1))
-    if (key.upArrow) setCursor(Math.max(cursor - 1, 0))
+    const len = items.length
+    if (key.downArrow) setCursor((cursor + 1) % len)
+    if (key.upArrow) setCursor((cursor + len - 1) % len)
   })
 
   useEffect(() => {

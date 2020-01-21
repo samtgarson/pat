@@ -12,6 +12,7 @@ type ChooseCollectionProps = {
   collections: BaseCollectionAttributes[]
   set: (collection: Collection) => void
   getApiKey: (id: string) => string
+  collectionID?: string
   allowNew?: boolean
   chooseNew?: Function
 }
@@ -24,9 +25,9 @@ const Item: FunctionComponent<ItemProps> = ({ label, isSelected }) => (
 	</Color>
 )
 
-export const ChooseCollection: FunctionComponent<ChooseCollectionProps> = ({ set, collections, getApiKey, chooseNew, allowNew = false }) => {
+export const ChooseCollection: FunctionComponent<ChooseCollectionProps> = ({ set, collections, getApiKey, chooseNew, collectionID: existingCollectionID, allowNew = false }) => {
   const collectionItems = collections.map(c => ({ value: c.uid, label: c.name }))
-  const [collectionID, setCollectionID] = useState()
+  const [collectionID, setCollectionID] = useState(existingCollectionID)
 
   if (allowNew) collectionItems.push({ value: NEW_COLLECTION, label: NEW_COLLECTION_LABEL })
 
@@ -43,7 +44,7 @@ export const ChooseCollection: FunctionComponent<ChooseCollectionProps> = ({ set
 
   return (
     <Section title="Select collection:">
-      <Select itemComponent={Item} items={collectionItems} onSelect={c => setCollectionID(c.value)} />
+      <Select itemComponent={Item} items={collectionItems} onSelect={c => setCollectionID(`${c.value}`)} />
     </Section>
   )
 }
