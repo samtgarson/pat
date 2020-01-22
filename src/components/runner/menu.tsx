@@ -19,7 +19,7 @@ const MenuItem: FunctionComponent<ItemProps> = ({ label }) => {
 }
 
 export const Menu: FunctionComponent = () => {
-  const { route: { go }, state: { collection } } = GlobalState.useContainer()
+  const { route: { go, back }, state: { collection } } = GlobalState.useContainer()
 
   const onSelect = useCallback(({ value }) => {
     switch (value) {
@@ -28,7 +28,7 @@ export const Menu: FunctionComponent = () => {
       case MenuItems.Delete:
         return go(Pages.DeleteCollection)
       case MenuItems.Back:
-        return go(Pages.List)
+        return back()
       case MenuItems.Switch:
         return go(Pages.Home)
     }

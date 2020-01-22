@@ -4,7 +4,7 @@ import { Item } from '@/types/postman/collection'
 import fixture from '../fixtures/item.json'
 
 const createItem = (): Item => ({
-  name: 'name',
+  name: 'Root',
   // eslint-disable-next-line @typescript-eslint/camelcase
   _postman_id: 'uid'
 })
@@ -35,5 +35,9 @@ describe('Node', () => {
     expect(child.request).toBeInstanceOf(Request)
     expect(child.request.request).toEqual(fixture.item[0].request)
     expect(child.request.responses).toEqual(fixture.item[0].response)
+  })
+
+  describe('ancestors', () => {
+    expect(child.ancestors).toEqual(['Root', 'Event Bookings'])
   })
 })

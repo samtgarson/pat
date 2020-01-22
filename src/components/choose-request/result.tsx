@@ -21,7 +21,7 @@ export const Result: FunctionComponent<ResultProps> = ({ name, ancestors, matche
 
   const ancestorLabels = ancestors.map(a => (
     <Box marginRight={1} flexShrink={1} key={a} textWrap='truncate'>
-      <Color {...directoryColor}>{a + ' >'}</Color>
+      <Color {...directoryColor}>{a + ' ' + figures.arrowRight }</Color>
     </Box>
   ))
 

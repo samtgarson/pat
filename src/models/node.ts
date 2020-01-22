@@ -35,6 +35,10 @@ export class Node extends Tree {
   public request?: Request
   public name: string
 
+  static isNode (n: any): n is Node {
+    return !!n.name
+  }
+
   constructor (public parent: Node | Tree, data: Item) {
     super(data)
 
@@ -42,10 +46,6 @@ export class Node extends Tree {
 
     this.name = name
     if (request && response) this.request = new Request(this, request, response)
-  }
-
-  isTopLevel () {
-    return this.parent instanceof Tree
   }
 
   searchCandidates (ancestors: string[] = [], list: SearchCandidate[] = []) {
@@ -58,7 +58,7 @@ export class Node extends Tree {
     return list
   }
 
-  forSearch (ancestors: string[]): SearchCandidate {
+  forSearch (ancestors: string[] = this.ancestors): SearchCandidate {
     return {
       ancestors,
       searchText: ancestors.join(' '),
@@ -67,4 +67,16 @@ export class Node extends Tree {
       description: this.request?.description
     }
   }
+
+  get ancestors () {
+    let current = this.parent
+    const ancestors: string[] = []
+
+    while (current && Node.isNode(current)) {
+      ancestors.unshift(current.name)
+      current = current.parent
+    }
+    return ancestors
+  }
+
 }

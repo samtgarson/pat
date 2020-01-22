@@ -1,16 +1,22 @@
-import React, { FunctionComponent, useMemo } from "react"
+import React, { FunctionComponent, useMemo, Fragment } from "react"
 import { GlobalState } from "@/src/services/global-context"
 import { Tree, Node } from "@/src/models/node"
-import { Text } from 'ink'
+import { Text, Color, useInput } from 'ink'
+import Section from "@/src/components/util/section"
+import { Pages } from "@/src/constants"
 
 export const Request: FunctionComponent = () => {
-  const {
-    route: { params }
-  } = GlobalState.useContainer()
+  const { route: { params, go } } = GlobalState.useContainer()
+
+  useInput((input) => {
+    if (input === '?') go(Pages.Menu)
+  })
 
   const node: Node = params.node
   if (!node) return null
 
   const { request } = node
-  return <Text>{ request?.request.url.path.join('/') }</Text>
+
+  return <Section title={ node.name }>
+  </Section>
 }
