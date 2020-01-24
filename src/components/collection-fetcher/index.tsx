@@ -4,6 +4,7 @@ import { ChooseExisting } from '@/src/components/collection-fetcher/choose-exist
 import { ChooseNew } from '@/src/components/collection-fetcher/choose-new'
 import { Collection } from '@/types/postman/collection'
 import { Pages } from '@/src/constants'
+import { State } from '@/src/services/global-context/state'
 
 
 const CollectionFetcher: FunctionComponent = () => {
@@ -12,10 +13,13 @@ const CollectionFetcher: FunctionComponent = () => {
   const [collections, setCollections] = useState(Object.values(existingCollections))
 
   const done = (collection: Collection, apiKey: string, workspaceID: string) => {
-    dispatch({ collection, apiKey, workspaceID })
-    if (config.has(`collections.${collection.uid}`)) {
-      config.set('lastUsedCollection', collection.uid)
-    }
+    const environmentKey = `collections.${collection.uid}.environment`
+
+    const payload: State = { collection, apiKey, workspaceID }
+    if (config.has(environmentKey)) payload.environment = config.get(environmentKey)
+
+    dispatch(payload)
+    config.set('lastUsedCollection', collection.uid)
 
     go(Pages.List)
   }

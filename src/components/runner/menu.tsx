@@ -30,7 +30,7 @@ export const Menu: FunctionComponent = () => {
       case MenuItems.Back:
         return back()
       case MenuItems.Switch:
-        return go(Pages.Home)
+        return go(Pages.ChooseCollection)
     }
   }, [go])
 

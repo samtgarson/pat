@@ -1,4 +1,4 @@
-import { BaseEnvironmentAttributes } from "./postman/environments"
+import { BaseEnvironmentAttributes, Environment } from "./postman/environments"
 import { BaseCollectionAttributes } from "./postman/collection"
 
 export type StoredWorkspace = {
@@ -9,6 +9,7 @@ export type StoredWorkspace = {
 
 export interface StoredCollection extends BaseCollectionAttributes {
   workspaceID: string
+  environment?: Environment
 }
 
 export interface StoredEnvironment extends BaseEnvironmentAttributes {

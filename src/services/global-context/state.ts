@@ -3,7 +3,7 @@ import { Environment } from "@/types/postman/environments"
 import PatError from "@/src/services/pat-error"
 import { useReducer } from "react"
 
-interface State {
+export interface State {
   collection?: Collection
   environment?: Environment
   error?: Error | PatError

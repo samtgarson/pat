@@ -8,8 +8,15 @@ import { GlobalState } from "@/src/services/global-context"
 import { Node } from "@/src/models/node"
 
 export const ChooseRequest: FunctionComponent = () => {
-  const { route: { go }, state: { collection } } = GlobalState.useContainer()
-  if (!collection) return null
+  const { route: { go }, state: { collection, environment } } = GlobalState.useContainer()
+  if (!collection) {
+    go(Pages.ChooseCollection)
+    return null
+  }
+  if (!environment) {
+    go(Pages.ChooseEnvironment)
+    return null
+  }
 
   const [filter, setFilter] = useState('')
 
