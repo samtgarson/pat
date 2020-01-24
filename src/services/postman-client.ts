@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Collection } from '@/types/postman/collection'
 import { Workspace, BaseWorkspaceAttributes } from '@/types/postman/workspace'
+import { Environment } from '@/types/postman/environments'
 
 type CollectionResponse = {
   collection: Collection
@@ -12,6 +13,10 @@ type WorkspacesResponse = {
 
 type WorkspaceResponse = {
   workspace: Workspace
+}
+
+type EnvironmentResponse = {
+  environment: Environment
 }
 
 class PostmanClient {
@@ -37,6 +42,11 @@ class PostmanClient {
   async workspace (id: string) {
     const { data: { workspace } } = await this.client.get<WorkspaceResponse>(`/workspaces/${id}`)
     return workspace
+  }
+
+  async environment (id: string) {
+    const { data: { environment } } = await this.client.get<EnvironmentResponse>(`/environments/${id}`)
+    return environment
   }
 }
 

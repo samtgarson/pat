@@ -8,10 +8,10 @@ import { ChooseCollection } from "@/src/components/collection-fetcher/choose-col
 import { ChooseWorkspace } from "@/src/components/collection-fetcher/choose-workspace"
 import { Collection } from "@/types/postman/collection"
 import { GlobalState } from "@/src/services/global-context"
-import { SaveCollection } from "@/src/components/collection-fetcher/save-collection"
+import { saveCollection } from "@/src/components/collection-fetcher/save-collection"
 
 type ChooseNewProps = {
-  done: (collection: Collection) => void
+  done: (collection: Collection, apiKey: string, workspaceID: string) => void
 }
 
 export const ChooseNew: FunctionComponent<ChooseNewProps> = ({ done }) => {
@@ -28,14 +28,10 @@ export const ChooseNew: FunctionComponent<ChooseNewProps> = ({ done }) => {
   )
 
   if (collection && workspace) {
-    if (config.has(`collections.${collection.uid}`)) {
-      done(collection)
-      return null
-    }
+    saveCollection(config, collection, workspace, apiKey)
 
-    return (
-      <SaveCollection collection={collection} workspace={workspace} apiKey={apiKey} done={() => done(collection)} />
-    )
+    done(collection, apiKey, workspace.id)
+    return null
   }
 
   if (workspace) return (

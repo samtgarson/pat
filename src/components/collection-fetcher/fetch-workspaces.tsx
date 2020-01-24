@@ -10,7 +10,7 @@ type FetchWorkspacesProps = {
 }
 
 export const FetchWorkspaces: FunctionComponent<FetchWorkspacesProps> = ({ client, set }) => {
-  const { state: { setState } } = GlobalState.useContainer()
+  const { state: { dispatch } } = GlobalState.useContainer()
 
   useEffect(() => {
     const fetch = async () => {
@@ -18,7 +18,7 @@ export const FetchWorkspaces: FunctionComponent<FetchWorkspacesProps> = ({ clien
         const workspaces = await client.workspaces()
         if (!workspaces.length) throw new PatError('Could not find any workspaces')
         set(workspaces)
-      } catch (error) { setState({ error }) }
+      } catch (error) { dispatch({ error }) }
     }
 
     fetch()

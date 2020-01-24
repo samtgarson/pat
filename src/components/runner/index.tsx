@@ -9,6 +9,7 @@ import { GlobalState } from '@/src/services/global-context'
 import { ErrorMessage } from '@/src/components/util/error'
 import CollectionFetcher from '@/src/components/collection-fetcher/index'
 import { Request } from '@/src/components/request'
+import { EditEnvironment } from '@/src/components/edit-environment'
 
 export const Runner: FunctionComponent = () => {
   const { state: { error }, route } = GlobalState.useContainer()
@@ -24,8 +25,7 @@ export const Runner: FunctionComponent = () => {
     case Pages.DeleteCollection:
       return <Delete />
     case Pages.Env:
-      /* return <EditEnvironment /> */
-      return <Color>Edit environment</Color>
+      return <EditEnvironment />
     case Pages.Request:
       return <Request />
     default:

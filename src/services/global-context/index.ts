@@ -1,13 +1,12 @@
 import { createContainer } from 'unstated-next'
 import Conf from 'conf'
-import { createState } from '@/src/services/global-context/state'
-import { createRouter } from '@/src/services/global-context/route'
+import { createRouter } from './route'
+import { createState } from './state'
 
 const config = new Conf()
-
 const useGlobalState = () => {
-  const state = createState()
   const route = createRouter()
+  const state  = createState()
 
   return {
     state,

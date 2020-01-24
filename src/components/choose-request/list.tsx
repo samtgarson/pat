@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FunctionComponent, useMemo } from "react"
 import { Collection } from '@/types/postman/collection'
 import { Tree, Node } from "@/src/models/node"
@@ -22,12 +22,19 @@ export const List: FunctionComponent<ListProps> = ({ collection, filter, onSelec
   const tree = new Tree(collection)
   const sort = new QuickScore<SearchCandidate>(tree.searchCandidates(), ['searchText', 'name'])
   const results = useMemo(() => sort.search(filter), [filter])
+  const [cursor, setCursor] = useState(0)
 
   const selectNode = (item: QuickScoreResult<SearchCandidate>) => {
     onSelect && onSelect(item.item.node)
   }
 
-  return <Window items={results} maxHeight={10} emptyMessage={emptyMessage} onSelect={selectNode}>
-    { (r, selected) => <Result key={r.item.node.id} matches={r.matches} {...r.item} selected={selected} emptyFilter={filter.length === 0} /> }
+  return <Window items={results} emptyMessage={emptyMessage} onSelect={selectNode} onChange={setCursor} selected={cursor}>
+    { (r, selected) => <Result
+      key={r.item.node.id}
+      matches={r.matches}
+      {...r.item}
+      selected={selected}
+      emptyFilter={filter.length === 0}
+    /> }
   </Window>
 }

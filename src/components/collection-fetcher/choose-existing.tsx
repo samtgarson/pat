@@ -5,7 +5,7 @@ import { StoredCollection } from "@/types/config"
 import { Collection } from "@/types/postman/collection"
 
 type ChooseExistingProps = {
-  done: (collection: Collection) => void
+  done: (collection: Collection, apiKey: string, workspaceID: string) => void
   chooseNew: Function
   collectionID?: string
 }
@@ -18,18 +18,28 @@ export const ChooseExisting: FunctionComponent<ChooseExistingProps> = ({ done, c
     [config]
   )
 
+  const getWorkspaceID = (collectionID: string) => {
+     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+     const { workspaceID } = collections.find(c => c.uid === collectionID)!
+     return workspaceID
+  }
+
   const getApiKey = (collectionID: string): string => {
-    const { workspaceID } = collections.find(c => c.uid === collectionID) || {}
+    const workspaceID = getWorkspaceID(collectionID)
     const { apiKey } = workspaceID && config.get('workspaces')[workspaceID]
     return apiKey
   }
 
-
+  const setCollection = (collection: Collection) => {
+    const workspaceID = getWorkspaceID(collection.uid)
+    const apiKey = getApiKey(collection.uid)
+    done(collection, apiKey, workspaceID)
+  }
 
   return <ChooseCollection
     collectionID={collectionID}
     chooseNew={chooseNew}
-    set={done}
+    set={setCollection}
     allowNew={true}
     collections={collections}
     getApiKey={getApiKey}

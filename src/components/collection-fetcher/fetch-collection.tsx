@@ -11,14 +11,14 @@ type FetchCollectionProps = {
 }
 
 export const FetchCollection: FunctionComponent<FetchCollectionProps> = ({ client, set, id }) => {
-  const { state: { setState } } = GlobalState.useContainer()
+  const { state: { dispatch } } = GlobalState.useContainer()
 
   useEffect(() => {
     const fetch = async () => {
       try {
         const collection = await client.collection(id)
         set(collection)
-      } catch (error) { setState({ error }) }
+      } catch (error) { dispatch({ error }) }
     }
 
     fetch()

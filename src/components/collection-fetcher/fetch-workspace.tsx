@@ -11,7 +11,7 @@ type FetchWorkspaceProps = {
 }
 
 export const FetchWorkspace: FunctionComponent<FetchWorkspaceProps> = ({ client, setWorkspace, id }) => {
-  const { state: { setState } } = GlobalState.useContainer()
+  const { state: { dispatch } } = GlobalState.useContainer()
 
   useEffect(() => {
     const fetch = async () => {
@@ -20,7 +20,7 @@ export const FetchWorkspace: FunctionComponent<FetchWorkspaceProps> = ({ client,
         if (!workspace.collections.length) throw new PatError('Could not find any collections in that workspace')
 
         setWorkspace(workspace)
-      } catch (error) { setState({ error }) }
+      } catch (error) { dispatch({ error }) }
     }
 
     fetch()

@@ -1,40 +1,38 @@
-import React, { FunctionComponent, useState, ReactElement, useMemo, useEffect } from "react"
+import React, { FunctionComponent, ReactElement, useMemo, useEffect } from "react"
 import { Box, useInput } from "ink"
 
 type Item = { [key: string]: any }
 
 type WindowProps<T extends Item> = {
-  maxHeight: number
+  maxHeight?: number
   items: T[]
   emptyMessage?: () =>  ReactElement
   onSelect?: (item: T) => void
   children: (item: T, selected: boolean) => ReactElement
+  selected: number
+  onChange: (selected: number) => void
 }
 
 export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T>> => ({
-  maxHeight,
+  maxHeight = 10,
   items,
   emptyMessage = () => '',
   onSelect,
-  children
+  children,
+  selected,
+  onChange
 }) => {
-  const [cursor, setCursor] = useState(0)
-
   useInput((_input, key) => {
     const len = items.length
-    if (key.downArrow) setCursor((cursor + 1) % len)
-    if (key.upArrow) setCursor((cursor + len - 1) % len)
-    if (key.return && onSelect) onSelect(items[cursor])
+    if (key.downArrow) onChange((selected + 1) % len)
+    if (key.upArrow) onChange((selected + len - 1) % len)
+    if (key.return && onSelect) onSelect(items[selected])
   })
-
-  useEffect(() => {
-    setCursor(0)
-  }, [items])
 
   const windowStart = useMemo(() => {
     const halfHeight = Math.floor(maxHeight / 2)
-    return Math.max(0, Math.min(cursor - halfHeight, items.length - maxHeight))
-  }, [cursor, items, maxHeight])
+    return Math.max(0, Math.min(selected - halfHeight, items.length - maxHeight))
+  }, [selected, items, maxHeight])
 
   const visibleItems = useMemo(() => {
     return items.slice(windowStart, windowStart + maxHeight)
@@ -42,7 +40,7 @@ export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T
 
 
   return <Box height={maxHeight} flexDirection='column'>
-    { visibleItems.map((item, i) => children(item, i + windowStart === cursor)) }
+    { visibleItems.map((item, i) => children(item, i + windowStart === selected)) }
     { visibleItems.length === 0 && emptyMessage() }
   </Box>
 }
