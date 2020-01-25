@@ -31,7 +31,11 @@ const updateValues = (arr: Array<EnvironmentVariable>, item: EnvironmentVariable
   return i
 })
 
-export const EditEnvironment: FunctionComponent = () => {
+type EditEnvironmentProps = {
+  back: () => void
+}
+
+export const EditEnvironment: FunctionComponent<EditEnvironmentProps> = ({ back }) => {
   const { state: { environment, dispatch } } = GlobalState.useContainer()
   const [cursor, setCursor] = useState(0)
   const Window = WindowFactory<EnvironmentVariable>()
@@ -53,7 +57,7 @@ export const EditEnvironment: FunctionComponent = () => {
 
   if (!environment) return null
   return <Section title="Edit environment:">
-    <Window selected={cursor} onChange={setCursor} items={environment.values}>
+    <Window selected={cursor} onChange={setCursor} items={environment.values} onSelect={back}>
       { (item, selected) => <EnvironmentItem update={update} key={item.key} keyWidth={keyWidth} item={item} selected={selected} /> }
     </Window>
   </Section>

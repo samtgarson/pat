@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { FunctionComponent } from 'react'
 import Select, { ItemProps } from 'ink-select-input'
 import { Pages } from '@/src/constants'
 import { Color } from 'ink'
 import { GlobalState } from '@/src/services/global-context'
 import Section from '@/src/components/util/section'
+import { EditEnvironment } from '@/src/components/edit-environment'
 
 enum MenuItems {
   Switch = 'Use another collection',
@@ -18,21 +19,34 @@ const MenuItem: FunctionComponent<ItemProps> = ({ label }) => {
   return <Color {...color}>{ label }</Color>
 }
 
-export const Menu: FunctionComponent = () => {
-  const { route: { go, back }, state: { collection } } = GlobalState.useContainer()
+export const MenuFactory: (hideMenu: () => void) => FunctionComponent = hideMenu => () => {
+  const { route: { go }, state: { collection } } = GlobalState.useContainer()
 
+  const navigate = (path: Pages) => {
+    hideMenu()
+    go(path)
+  }
+
+  const [showEnv, setShowEnv] = useState(false)
   const onSelect = useCallback(({ value }) => {
     switch (value) {
       case MenuItems.Env:
-        return go(Pages.Env)
+        return setShowEnv(true)
       case MenuItems.Delete:
-        return go(Pages.DeleteCollection)
+        return navigate(Pages.DeleteCollection)
       case MenuItems.Back:
-        return back()
+        return hideMenu()
       case MenuItems.Switch:
-        return go(Pages.ChooseCollection)
+        return navigate(Pages.ChooseCollection)
     }
   }, [go])
+
+  const hideEnv = useCallback(() => {
+    setShowEnv(false)
+    hideMenu()
+  }, [showEnv])
+
+  if (showEnv) return <EditEnvironment back={hideEnv} />
 
   const items = Object.values(MenuItems).map(v => ({ value: v, label: v }))
   return <Section title={ `${collection?.info.name}` }>

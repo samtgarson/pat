@@ -19,7 +19,7 @@ export const Delete: FunctionComponent = () => {
     if (val) {
       config.delete(key)
       setDeleted(true)
-    } else go(Pages.List)
+    } else go(Pages.Home)
   }, [value, collection.uid])
 
 if (deleted) return <Text><Color grey>{ '>' }</Color> <Color green>{ figures.tick }</Color> { `Deleted ${collection.info.name}.` }</Text>

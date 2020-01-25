@@ -18,7 +18,7 @@ export const EnvironmentFetcher: FunctionComponent = () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const key = `collections.${collection!.uid}.environment`
     config.set(key, environment)
-    go(Pages.List)
+    go(Pages.Home)
   }
 
   if (environmentID) {

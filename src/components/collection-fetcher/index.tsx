@@ -21,7 +21,7 @@ const CollectionFetcher: FunctionComponent = () => {
     dispatch(payload)
     config.set('lastUsedCollection', collection.uid)
 
-    go(Pages.List)
+    go(Pages.Home)
   }
 
   if (params.quickStart && config.has('lastUsedCollection')) {
