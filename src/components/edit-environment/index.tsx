@@ -1,64 +1,48 @@
-import React, { FunctionComponent, useState, useMemo, useCallback } from "react"
+import React, { FunctionComponent, useState, useMemo, useCallback, useEffect } from "react"
 import { WindowFactory } from "@/src/components/util/window"
-import { EnvironmentVariable } from "@/types/postman/environments"
 import Section from "@/src/components/util/section"
 import { GlobalState } from "@/src/services/global-context"
-import { Box, Color, Text } from "ink"
-import Input from 'ink-text-input'
-import figures from "figures"
-
-type EnvironmentItemProps = {
-  item: EnvironmentVariable
-  selected: boolean
-  keyWidth: number
-  update: (item: EnvironmentVariable) => void
-}
-
-const EnvironmentItem: FunctionComponent<EnvironmentItemProps> = ({ item, selected, keyWidth, update }) => {
-
-  return <Box>
-    <Color blue>{ selected ? figures.pointer : ' '} </Color>
-    <Box width={keyWidth + 2}><Color white>{ item.key }: </Color></Box>
-    { selected
-      ? <Input value={item.value} onChange={value => update({ ...item, value })} />
-      : <Text>{ item.value }</Text>
-    }
-  </Box>
-}
-
-const updateValues = (arr: Array<EnvironmentVariable>, item: EnvironmentVariable) => arr.map(i => {
-  if (item.key === i.key) return item
-  return i
-})
+import { getMaxWidth, KeyValueEditorFactory } from "@/src/components/util/key-value-editor"
+import { hshToKeyValue } from "@/src/utils/key-value-converter"
+import { KeyValue } from "@/types/postman/misc"
 
 type EditEnvironmentProps = {
   back: () => void
 }
 
+const Editor = KeyValueEditorFactory()
+
 export const EditEnvironment: FunctionComponent<EditEnvironmentProps> = ({ back }) => {
-  const { state: { environment, dispatch } } = GlobalState.useContainer()
+  const { state: { environment, dispatch, collection }, config } = GlobalState.useContainer()
+  const [local, setLocal] = useState(environment)
   const [cursor, setCursor] = useState(0)
-  const Window = WindowFactory<EnvironmentVariable>()
+  const Window = WindowFactory<KeyValue>()
+  const items = useMemo(() => local && hshToKeyValue(local), [local])
   const keyWidth = useMemo(
-    () => environment
-      ? environment
-        .values
-        .reduce((prev, { key }) => Math.max(prev, key.length), 0)
-      : 0,
-    [environment]
+    () => items ? getMaxWidth(items) : 0,
+    [items]
   )
 
-  const update = useCallback((item: EnvironmentVariable) => environment && dispatch({
-    environment: {
-      ...environment,
-      values: updateValues(environment.values, item)
-    }
-  }), [environment])
+  useEffect(() => {
+    if (!environment || !collection) return
+    const key = `collections.${collection.uid}.environment`
+    config.set(key, environment)
+  }, [environment])
 
-  if (!environment) return null
+  const update = useCallback(
+    ({ key, value }: KeyValue) => setLocal({ ...local, [key]: value }),
+    [local]
+  )
+
+  const done = () => {
+    dispatch({ environment: local })
+    back()
+  }
+
+  if (!items) return null
   return <Section title="Edit environment:">
-    <Window selected={cursor} onChange={setCursor} items={environment.values} onSelect={back}>
-      { (item, selected) => <EnvironmentItem update={update} key={item.key} keyWidth={keyWidth} item={item} selected={selected} /> }
+    <Window selected={cursor} onChange={setCursor} items={items} onSelect={done}>
+      { (item, selected) => <Editor update={update} key={item.key} keyWidth={keyWidth} item={item} selected={selected} /> }
     </Window>
   </Section>
 

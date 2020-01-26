@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { Text, Color } from 'ink'
-import PatError from '@/src/services/pat-error'
+import PatError from '@/src/models/pat-error'
 
 type ErrorMessageProps = {
   error: Error | PatError

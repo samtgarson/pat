@@ -1,0 +1,48 @@
+{
+  "environment": {
+    "id": "c4c10ecc-a5d8-4deb-b6b7-35bcc4988db4",
+    "name": "Staging",
+    "values": [
+      {
+        "key": "identityUrl",
+        "value": "https://identity-master.ic.sohohousedigital.com",
+        "enabled": true
+      },
+      {
+        "key": "baseUrl",
+        "value": "https://api.staging.sohohousedigital.com",
+        "enabled": true
+      },
+      {
+        "key": "client_id",
+        "value": "c5b656450b07b5cb9540b5b9de133c76249f71b737ec100d1989047568cbc7be",
+        "enabled": true
+      },
+      {
+        "key": "client_secret",
+        "value": "ea17035c3ed73d551b6322db7c3336e4433cba8f281ad5f88be50c103d681234",
+        "enabled": true
+      },
+      {
+        "key": "email",
+        "value": "software-devs@sohohouse.com.test",
+        "enabled": true
+      },
+      {
+        "key": "password",
+        "value": "wampum-witty-brioche",
+        "enabled": true
+      },
+      {
+        "key": "membership_card_number",
+        "value": "SUB-589996",
+        "enabled": true
+      },
+      {
+        "key": "timestamp",
+        "value": "2019-09-20T10:13:31.842Z",
+        "enabled": true
+      }
+    ]
+  }
+}

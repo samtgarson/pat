@@ -1,11 +1,11 @@
 import { Collection } from "@/types/postman/collection"
-import { Environment } from "@/types/postman/environments"
-import PatError from "@/src/services/pat-error"
+import PatError from "@/src/models/pat-error"
 import { useReducer } from "react"
+import { StoredCollection } from "@/types/config"
 
 export interface State {
   collection?: Collection
-  environment?: Environment
+  environment?: StoredCollection['environment']
   error?: Error | PatError
   apiKey?: string
   workspaceID?: string

@@ -5,7 +5,6 @@ import { FetchEnvironment } from "./fetch-evironment"
 import Section from "@/src/components/util/section"
 import { Pages } from "@/src/constants"
 
-
 export const EnvironmentFetcher: FunctionComponent = () => {
   const [environmentID, setEnvironmentID] = useState()
   const {

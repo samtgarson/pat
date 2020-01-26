@@ -3,16 +3,19 @@ import { Pages } from '@/src/constants'
 import { FunctionComponent } from "react"
 import { ChooseRequest } from "../choose-request"
 import { Delete } from '@/src/components/runner/delete'
-import { GlobalState } from '@/src/services/global-context'
+import { GlobalState } from '@/src/services/global-context/index'
 import { ErrorMessage } from '@/src/components/util/error'
 import CollectionFetcher from '@/src/components/collection-fetcher/index'
 import { EnvironmentFetcher } from '@/src/components/environment-fetcher/index'
 import { Request } from '@/src/components/request'
+import { Menu } from './menu'
 
 
 export const Runner: FunctionComponent = () => {
-  const { state: { error }, route } = GlobalState.useContainer()
+  const { state: { error }, route, menu: { show } } = GlobalState.useContainer()
   if (error) return <ErrorMessage error={ error } />
+
+  if (show) return <Menu />
 
   switch (route.path) {
     case Pages.ChooseCollection:

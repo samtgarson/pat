@@ -16,7 +16,10 @@ cmd
   .action(async () => {
     const { waitUntilExit } = render(
       <App />,
-      { debug: !!process.env.PAT_DEBUG }
+      {
+        experimental: true,
+        debug: !!process.env.PAT_DEBUG
+      }
     )
     return waitUntilExit
   })

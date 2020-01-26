@@ -1,7 +1,7 @@
 import React, { useEffect, FunctionComponent } from 'react'
 import PostmanClient from '@/src/services/postman-client'
 import Loader from '@/src/components//util/loader'
-import PatError from '@/src/services/pat-error'
+import PatError from '@/src/models/pat-error'
 import { GlobalState } from "@/src/services/global-context"
 
 type FetchWorkspacesProps = {

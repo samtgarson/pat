@@ -1,17 +1,12 @@
-import { useState } from "react"
 import { useInput } from "ink"
-import { MenuFactory } from "@/src/components/menu"
+import { GlobalState } from "@/src/services/global-context"
+import { MenuItems } from "@/types/menu"
 
-export const useMenu = () => {
-  const [showMenu, setShowMenu] = useState(false)
-  const toggleMenu = () => setShowMenu(!showMenu)
+export const useMenu = (items: MenuItems[] = []) => {
+  const { menu: { toggle, show } } = GlobalState.useContainer()
 
   useInput(input => {
-    if (!showMenu && input === '?') setShowMenu(true)
+    if (!show && input === '?') toggle(items)
   })
-
-  const hideMenu = () => setShowMenu(false)
-  const Menu = MenuFactory(hideMenu)
-
-  return { toggleMenu, showMenu, Menu }
 }
+

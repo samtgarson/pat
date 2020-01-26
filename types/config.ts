@@ -9,7 +9,7 @@ export type StoredWorkspace = {
 
 export interface StoredCollection extends BaseCollectionAttributes {
   workspaceID: string
-  environment?: Environment
+  environment?: { [key: string]: string }
 }
 
 export interface StoredEnvironment extends BaseEnvironmentAttributes {

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
-import { GlobalState } from '@/src/services/global-context'
+import { GlobalState } from '@/src/services/global-context/index'
 import { ChooseExisting } from '@/src/components/collection-fetcher/choose-existing'
 import { ChooseNew } from '@/src/components/collection-fetcher/choose-new'
 import { Collection } from '@/types/postman/collection'

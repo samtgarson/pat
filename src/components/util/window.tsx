@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement, useMemo, useEffect } from "react"
+import React, { FunctionComponent, ReactElement, useMemo } from "react"
 import { Box, useInput } from "ink"
 
 type Item = { [key: string]: any }
@@ -22,16 +22,16 @@ export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T
   selected,
   onChange
 }) => {
+  const len = useMemo(() =>  items.length, [items])
   useInput((_input, key) => {
-    const len = items.length
-    if (key.downArrow) onChange((selected + 1) % len)
-    if (key.upArrow) onChange((selected + len - 1) % len)
-    if (key.return && onSelect) onSelect(items[selected])
+    if (key.downArrow) return onChange((selected + 1) % len)
+    if (key.upArrow) return onChange((selected + len - 1) % len)
+    if (key.return && onSelect) return onSelect(items[selected])
   })
 
   const windowStart = useMemo(() => {
     const halfHeight = Math.floor(maxHeight / 2)
-    return Math.max(0, Math.min(selected - halfHeight, items.length - maxHeight))
+    return Math.max(0, Math.min(selected - halfHeight, len - maxHeight))
   }, [selected, items, maxHeight])
 
   const visibleItems = useMemo(() => {

@@ -14,9 +14,8 @@ interface ResultProps extends SearchCandidate {
 }
 
 export const Result: FunctionComponent<ResultProps> = ({ name, ancestors, matches, emptyFilter, selected }) => {
-  const requestColor = { [selected ? 'blueBright' : emptyFilter ? 'whiteBright' : 'white']: true }
-  const highlightColor = { [selected ? 'blueBright' : 'whiteBright']: true }
-  const directoryColor = { [selected ? 'blue' : 'grey']: true, dim: selected }
+  const requestColor = { [selected ? 'blueBright' : 'whiteBright']: true }
+  const directoryColor = { [selected ? 'blue' : 'white']: true }
   const pointer = selected ? `${figures.pointer} ` : '  '
 
   const ancestorLabels = ancestors.map(a => (
@@ -31,7 +30,7 @@ export const Result: FunctionComponent<ResultProps> = ({ name, ancestors, matche
     <Box textWrap='truncate' flexShrink={0}>
       <Color {...requestColor}>
         <Highlight text={name} matches={matches.name}>
-          {text => <Text bold><Color {...highlightColor}>{text}</Color></Text>}
+          {text => <Text bold><Color {...requestColor}>{text}</Color></Text>}
         </Highlight>
       </Color>
     </Box>

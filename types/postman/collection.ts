@@ -1,3 +1,5 @@
+import { KeyValue, Description } from './misc'
+
 export interface BaseCollectionAttributes {
   id?: string
   name: string
@@ -57,7 +59,7 @@ export interface Request {
   auth?:        Auth
   body?:        Body
   description?: string
-  header:       Header[]
+  header:       KeyValue[]
   method:       any
   url:          RequestURL
 }
@@ -69,7 +71,7 @@ export interface Response {
   body?:                     string
   code?:                     number
   cookie:                    any[]
-  header?:                   Header[]
+  header?:                   KeyValue[]
   id:                        string
   name:                      string
   originalRequest:           Request
@@ -87,26 +89,13 @@ export interface RequestURL {
   host:      string[]
   path:      string[]
   variable?: URLVariable[]
-  query?:    Header[]
+  query?:    KeyValue[]
 }
 
-export interface Header {
-  description?: string | Description
-  key:          string
-  value:        string
-}
-
-export interface URLVariable {
+export interface URLVariable extends KeyValue {
   id:          string
-  key:         string
-  value:       string
   type:        string
   description: Description
-}
-
-export interface Description {
-  content: string
-  type:    string
 }
 
 export enum Status {

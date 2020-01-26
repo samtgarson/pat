@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { AppOptions } from '@/types/options'
-import { GlobalState } from '@/src/services/global-context'
+import { GlobalState } from '@/src/services/global-context/index'
 import { Runner } from '@/src/components/runner'
 
 const App: FunctionComponent<AppOptions> = () => {

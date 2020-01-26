@@ -1,0 +1,62 @@
+{
+  "method": "GET",
+  "header": [
+    {
+      "key": "authorization",
+      "value": ""
+    }
+  ],
+  "url": {
+    "raw": "{{baseUrl}}/events/bookings?filter[event_type]=<string>,<string>&per_page=10&page=1&filter[starts_at][from]=<dateTime>&filter[starts_at][to]=<dateTime>&filter[ends_at][from]=<dateTime>&filter[state]=<string>,<string>&include=<string>,<string>",
+    "host": [
+      "{{baseUrl}}"
+    ],
+    "path": [
+      "events",
+      "bookings"
+    ],
+    "query": [
+      {
+        "key": "filter[event_type]",
+        "value": "<string>,<string>",
+        "description": "Filters the results by event type\n"
+      },
+      {
+        "key": "per_page",
+        "value": "10",
+        "description": "The number of items to return per page ( default 10 )"
+      },
+      {
+        "key": "page",
+        "value": "1",
+        "description": "the page number, starts with 1"
+      },
+      {
+        "key": "filter[starts_at][from]",
+        "value": "<dateTime>",
+        "description": "Start time start range"
+      },
+      {
+        "key": "filter[starts_at][to]",
+        "value": "<dateTime>",
+        "description": "Start time end range"
+      },
+      {
+        "key": "filter[ends_at][from]",
+        "value": "<dateTime>",
+        "description": "End time from range"
+      },
+      {
+        "key": "filter[state]",
+        "value": "<string>,<string>",
+        "description": "Filters event bookings by state.\n"
+      },
+      {
+        "key": "include",
+        "value": "<string>,<string>",
+        "description": "A list of resources to include"
+      }
+    ]
+  }
+}
+

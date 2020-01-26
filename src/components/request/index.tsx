@@ -3,17 +3,18 @@ import { GlobalState } from "@/src/services/global-context"
 import { Node } from "@/src/models/node"
 import Section from "@/src/components/util/section"
 import { useMenu } from "@/src/services/menu"
+import { Summary } from "@/src/components/request/summary"
+import { MenuItems } from "@/types/menu"
 
 export const Request: FunctionComponent = () => {
   const { route: { params } } = GlobalState.useContainer()
+  useMenu([MenuItems.SwitchRequest, MenuItems.Env, MenuItems.SwitchEnv])
 
   const node: Node = params.node
-  if (!node) return null
-
   const { request } = node
-  const { showMenu, Menu } = useMenu()
+  if (!node || !request) return null
 
-  if (showMenu) return <Menu />
   return <Section title={ node.name }>
+    <Summary request={request} />
   </Section>
 }

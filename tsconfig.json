@@ -9,6 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "baseUrl": ".",
+    "lib": ["es2020.string"],
     "paths": {
       "@/*": ["*"]
     },

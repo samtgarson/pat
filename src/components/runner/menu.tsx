@@ -3,27 +3,25 @@ import { FunctionComponent } from 'react'
 import Select, { ItemProps } from 'ink-select-input'
 import { Pages } from '@/src/constants'
 import { Color } from 'ink'
-import { GlobalState } from '@/src/services/global-context'
+import { GlobalState } from '@/src/services/global-context/index'
 import Section from '@/src/components/util/section'
 import { EditEnvironment } from '@/src/components/edit-environment'
-
-enum MenuItems {
-  Switch = 'Use another collection',
-  Env    = 'Edit environment',
-  Delete = 'Delete this collection',
-  Back   = 'Back'
-}
+import { MenuItems } from '@/types/menu'
 
 const MenuItem: FunctionComponent<ItemProps> = ({ label }) => {
   const color = { red: label === MenuItems.Delete, gray: label === MenuItems.Back }
   return <Color {...color}>{ label }</Color>
 }
 
-export const MenuFactory: (hideMenu: () => void) => FunctionComponent = hideMenu => () => {
-  const { route: { go }, state: { collection } } = GlobalState.useContainer()
+export const Menu: FunctionComponent = () => {
+  const {
+    route: { go },
+    state: { collection, dispatch },
+    menu
+  } = GlobalState.useContainer()
 
   const navigate = (path: Pages) => {
-    hideMenu()
+    menu.toggle()
     go(path)
   }
 
@@ -35,20 +33,29 @@ export const MenuFactory: (hideMenu: () => void) => FunctionComponent = hideMenu
       case MenuItems.Delete:
         return navigate(Pages.DeleteCollection)
       case MenuItems.Back:
-        return hideMenu()
-      case MenuItems.Switch:
+        return menu.toggle()
+      case MenuItems.SwitchCollection:
         return navigate(Pages.ChooseCollection)
+      case MenuItems.SwitchRequest:
+        return navigate(Pages.Home)
+      case MenuItems.SwitchEnv:
+        dispatch({ environment: undefined })
+        return navigate(Pages.Home)
     }
   }, [go])
 
   const hideEnv = useCallback(() => {
     setShowEnv(false)
-    hideMenu()
+    menu.toggle()
   }, [showEnv])
 
   if (showEnv) return <EditEnvironment back={hideEnv} />
 
-  const items = Object.values(MenuItems).map(v => ({ value: v, label: v }))
+    const items = [
+      ...menu.items,
+      MenuItems.Back
+    ].map(v => ({ value: v, label: v }))
+
   return <Section title={ `${collection?.info.name}` }>
     <Select onSelect={onSelect} items={items} itemComponent={MenuItem} />
   </Section>

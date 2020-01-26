@@ -7,28 +7,27 @@ import { Pages } from "@/src/constants"
 import { GlobalState } from "@/src/services/global-context"
 import { Node } from "@/src/models/node"
 import { useMenu } from "@/src/services/menu"
+import { MenuItems } from "@/types/menu"
 
 export const ChooseRequest: FunctionComponent = () => {
-  const { route: { go }, state: { collection, environment } } = GlobalState.useContainer()
+  const { route: { go }, state: { collection, environment }, config } = GlobalState.useContainer()
   if (!collection) {
     go(Pages.ChooseCollection)
     return null
   }
-  if (!environment) {
+  if (!environment && config.has('environments')) {
     go(Pages.ChooseEnvironment)
     return null
   }
 
-  const [filter, setFilter] = useState('')
-  const { showMenu, Menu } = useMenu()
+  useMenu([MenuItems.SwitchCollection, MenuItems.Env, MenuItems.SwitchEnv, MenuItems.Delete])
 
+  const [filter, setFilter] = useState('')
   const onSelect = useCallback((node: Node) => {
     go(Pages.Request, { node })
   }, [])
 
   const handleInput = useCallback((i: string) => setFilter(i.replace('?', '')), [])
-
-  if (showMenu) return <Menu />
 
   return <Fragment>
     <List collection={collection} filter={filter} onSelect={onSelect} />
