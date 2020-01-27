@@ -81,7 +81,7 @@ describe('Request', () => {
       })
 
       it('is false when there is no query', () => {
-        req._query = {}
+        req['_query'] = {}
         expect(req.hasQuery).toBeFalsy()
       })
     })

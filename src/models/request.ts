@@ -1,4 +1,4 @@
-import { Request as RawRequest, Response as RawResponse } from '@/types/postman/collection'
+import { Request as RawRequest, Response as RawResponse, Method } from '@/types/postman/collection'
 import { keyValueToHash } from '@/src/utils/key-value-converter'
 import { AxiosRequestConfig } from 'axios'
 
@@ -29,6 +29,10 @@ export class Request {
 
   get method () {
     return this.request.method
+  }
+
+  get hasBody () {
+    return [Method.Put, Method.Patch, Method.Post].includes(this.method)
   }
 
   get description () {
