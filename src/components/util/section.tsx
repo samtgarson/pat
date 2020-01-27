@@ -1,17 +1,24 @@
 import React, { FunctionComponent, Fragment }  from 'react'
-import { Text, Color } from 'ink'
+import { Text, Color, Box } from 'ink'
 
 type SectionProps = {
   title: string
+  secondary?: boolean
 }
 
-export const SectionTitle: FunctionComponent<SectionProps> = ({ title }) => (
-  <Text><Color grey>{ '>' }</Color> <Color yellow>{ title }</Color></Text>
-)
+export const SectionTitle: FunctionComponent<SectionProps> = ({ title, secondary = false }) => {
+  const color = { yellow: !secondary, blue: secondary, dim: secondary }
+  return (
+    <Box marginTop={secondary ? 1 : 0}>
+      <Color grey>{ '> ' }</Color>
+      <Color {...color}>{ title }</Color>
+    </Box>
+  )
+}
 
-const Section: FunctionComponent<SectionProps> = ({ title, children }) => (
+const Section: FunctionComponent<SectionProps> = ({ children, ...props }) => (
   <Fragment>
-    <SectionTitle title={title} />
+    <SectionTitle {...props} />
     { children }
   </Fragment>
 )

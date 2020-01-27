@@ -8,6 +8,7 @@ type KeyValueEditorProps<T extends KeyValue> = {
   item: T
   selected: boolean
   keyWidth: number
+  pointer?: Element
   update: (item: T) => void
 }
 
@@ -19,10 +20,11 @@ export const KeyValueEditorFactory = <T extends KeyValue = KeyValue>(): Function
   item,
   selected,
   keyWidth,
-  update
+  update,
+  pointer = <Color blue>{figures.pointer} </Color>
 }) => (
   <Box>
-    <Color blue>{ selected ? figures.pointer : ' '} </Color>
+    { selected ? pointer : '  ' }
     <Box width={keyWidth + 2}><Color white>{ item.key }: </Color></Box>
     { selected
       ? <Input value={item.value} onChange={value => update({ ...item, value })} />

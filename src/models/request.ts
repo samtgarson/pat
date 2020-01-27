@@ -1,21 +1,30 @@
 import { Request as RawRequest, Response as RawResponse } from '@/types/postman/collection'
-import { Node } from './node'
+import { keyValueToHash, hshToKeyValue } from '@/src/utils/key-value-converter'
+import { KeyValue } from '@/types/postman/misc'
 
 export class Request {
+  static formatQuery (query: { [key: string]: string }) {
+    return Object.entries(query)
+      .filter(([_, v]) => !!v)
+      .map(pair => pair.join('='))
+      .join('&')
+  }
+
   query: { [key: string]: string }
-  parent: Node
   request: RawRequest
   responses: RawResponse[]
 
   constructor (
-    parent: Node,
     request: RawRequest,
     responses: RawResponse[]
   ) {
-    this.parent = parent
     this.request = request
     this.responses = responses
-    this.query = request.url.query?.reduce((hsh, q) => ({ ...hsh, [q.key]: q.value }), {}) || {}
+    this.query = keyValueToHash(request.url.query || [])
+  }
+
+  get method () {
+    return this.request.method
   }
 
   get description () {
@@ -28,16 +37,6 @@ export class Request {
 
   get hasQuery () {
     return Object.keys(this.query).length > 0
-  }
-
-  setQuery (key: string, value: string) {
-    this.query[key] = value
-  }
-
-  get formattedQuery () {
-    return Object.entries(this.query)
-      .map(pair => pair.join('='))
-      .join('&')
   }
 
   get path () {

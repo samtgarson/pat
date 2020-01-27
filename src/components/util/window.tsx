@@ -1,5 +1,6 @@
-import React, { FunctionComponent, ReactElement, useMemo } from "react"
+import React, { FunctionComponent, ReactElement, useMemo, useEffect } from "react"
 import { Box, useInput } from "ink"
+import { useCursor } from "@/src/services/use-cursor"
 
 type Item = { [key: string]: any }
 
@@ -24,10 +25,12 @@ export const WindowFactory = <T extends Item>(): FunctionComponent<WindowProps<T
 }) => {
   const len = useMemo(() =>  items.length, [items])
   useInput((_input, key) => {
-    if (key.downArrow) return onChange((selected + 1) % len)
-    if (key.upArrow) return onChange((selected + len - 1) % len)
     if (key.return && onSelect) return onSelect(items[selected])
   })
+
+  const { cursor } = useCursor(len)
+
+  useEffect(() => onChange(cursor), [cursor])
 
   const windowStart = useMemo(() => {
     const halfHeight = Math.floor(maxHeight / 2)

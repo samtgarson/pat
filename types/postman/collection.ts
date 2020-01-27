@@ -60,11 +60,17 @@ export interface Request {
   body?:        Body
   description?: string
   header:       KeyValue[]
-  method:       any
+  method:       Method
   url:          RequestURL
 }
 
-export type Method = "DELETE" | "GET" | "PATCH" | "POST"
+export enum Method {
+  Delete = 'DELETE',
+  Get    = 'GET',
+  Patch  = 'PATCH',
+  Post   = 'POST',
+  Put    = 'PUT'
+}
 
 export interface Response {
   _postman_previewlanguage?: string

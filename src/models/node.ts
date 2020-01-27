@@ -1,4 +1,4 @@
-import { Collection, Item } from "@/types/postman/collection"
+import { Collection, Item, Request as RawRequest, Response as RawResponse } from "@/types/postman/collection"
 import { Request } from '@/src/models/request'
 
 export type SearchCandidate = {
@@ -32,7 +32,8 @@ export class Tree {
 }
 
 export class Node extends Tree {
-  public request?: Request
+  private _request?: RawRequest
+  private _responses?: RawResponse[]
   public name: string
 
   static isNode (n: any): n is Node {
@@ -43,9 +44,14 @@ export class Node extends Tree {
     super(data)
 
     const { request, response, name } = data
-
+    this._request = request
+    this._responses = response
     this.name = name
-    if (request && response) this.request = new Request(this, request, response)
+
+  }
+
+  get request () {
+    if (this._request && this._responses) return new Request(this._request, this._responses)
   }
 
   searchCandidates (ancestors: string[] = [], list: SearchCandidate[] = []) {

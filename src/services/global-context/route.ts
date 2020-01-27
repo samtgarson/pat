@@ -1,5 +1,6 @@
 import { Pages } from "@/src/constants"
 import { useState } from "react"
+import { inspect } from 'util'
 
 export type RouteParams = { [id: string]: any }
 export type Route = { path: Pages, params: RouteParams }
@@ -16,8 +17,8 @@ export const createRouter = () => {
     if (path === routeObj.path && params == routeObj.params) return
 
     if (process.env.PAT_DEBUG) {
-      console.log(`NAVIGATING FROM ROUTE: ${JSON.stringify(routeObj)}`)
-      console.log(`NAVIGATING TO ROUTE: ${path} ${JSON.stringify(params)}`)
+      console.log(`NAVIGATING FROM ROUTE: ${inspect(routeObj, { depth: 2 })}`)
+      console.log(`NAVIGATING TO ROUTE: ${path} ${inspect(params, { depth: 2 })}`)
     }
 
     const history = [...routeHistory]
