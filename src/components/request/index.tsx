@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react"
+import React, { FunctionComponent, useState, useMemo } from "react"
 import { GlobalState } from "@/src/services/global-context"
 import { Node } from "@/src/models/node"
 import Section from "@/src/components/util/section"
@@ -10,23 +10,34 @@ import { useCursor } from "@/src/services/use-cursor"
 import { hshToKeyValue } from "@/src/utils/key-value-converter"
 
 export const Request: FunctionComponent = () => {
-  const { route: { params } } = GlobalState.useContainer()
+  const { route: { params: routeParams } } = GlobalState.useContainer()
   useMenu([MenuItems.SwitchRequest, MenuItems.Env, MenuItems.SwitchEnv])
 
-  const node: Node = params.node
+  const node: Node = routeParams.node
   const { request } = node
   if (!node || !request) return null
 
   const [query, setQuery] = useState(request.query)
-  const { cursor } = useCursor(Object.keys(query).length)
+  const queryArray = useMemo(() => hshToKeyValue(query), [query])
+
+  const [params, setParams] = useState(request.variables)
+  const paramArray = useMemo(() => hshToKeyValue(params), [params])
+
+  const { cursor } = useCursor(queryArray.length + paramArray.length)
 
   return <Section title={ node.name }>
-    <Summary request={request} query={query} />
+    <Summary request={request} query={query} params={params} />
     { request.hasQuery && <Editor
       title='Query Params:'
-      items={hshToKeyValue(query)}
+      items={queryArray}
       cursor={cursor}
       update={({ key, value }) => setQuery({ ...query, [key]: value })}
+    /> }
+    { request.hasVariables && <Editor
+      title='URL Params:'
+      items={paramArray}
+      cursor={cursor - queryArray.length}
+      update={({ key, value }) => setParams({ ...params, [key]: value })}
     /> }
   </Section>
 }
