@@ -10,11 +10,11 @@ import { useCursor } from "@/src/services/use-cursor"
 import { hshToKeyValue } from "@/src/utils/key-value-converter"
 
 export const Request: FunctionComponent = () => {
-  const { route: { params: routeParams } } = GlobalState.useContainer()
+  const { route: { params: routeParams }, state: { environment } } = GlobalState.useContainer()
   useMenu([MenuItems.SwitchRequest, MenuItems.Env, MenuItems.SwitchEnv])
 
   const node: Node = routeParams.node
-  const { request } = node
+  const request = node.request?.withEnv(environment)
   if (!node || !request) return null
 
   const [query, setQuery] = useState(request.query)

@@ -43,7 +43,7 @@ describe('Tree', () => {
   describe('searchCandidates', () => {
     let candidates: SearchCandidate[]
     beforeEach(() => {
-      tree = new Tree(collection)
+      tree = new Tree(collection as unknown as Collection)
       candidates = tree.searchCandidates()
     })
 

@@ -12,7 +12,7 @@ const createItem = (): Item => ({
 
 describe('Node', () => {
   const parent = new Node({} as Node, createItem())
-  const node = new Node(parent, fixture)
+  const node = new Node(parent, fixture as unknown as Item)
   const [child] = node.children
 
   it('sets the parent', () => {
@@ -33,8 +33,8 @@ describe('Node', () => {
 
   it('creates requests when present', () => {
     expect(child.request).toBeInstanceOf(Request)
-    expect(child.request.request).toEqual(fixture.item[0].request)
-    expect(child.request.responses).toEqual(fixture.item[0].response)
+    expect(child.request?.request).toEqual(fixture.item[0].request)
+    expect(child.request?.responses).toEqual(fixture.item[0].response)
   })
 
   describe('ancestors', () => {

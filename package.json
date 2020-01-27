@@ -17,6 +17,7 @@
     "conf": "^6.2.0",
     "figures": "^3.1.0",
     "ink": "^2.6.0",
+    "ink-box": "^1.0.0",
     "ink-confirm-input": "^2.0.0",
     "ink-select-input": "^3.1.2",
     "ink-spinner": "^3.0.1",
@@ -63,6 +64,9 @@
     "moduleNameMapper": {
       "^@/(.+)$": "<rootDir>/$1"
     },
+    "testPathIgnorePatterns": [
+      "dist"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/test/setup.js"
     ],

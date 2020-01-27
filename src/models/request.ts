@@ -5,17 +5,12 @@ import { AxiosRequestConfig } from 'axios'
 type PlainObj = { [key: string]: string }
 
 export class Request {
-  static formatQuery (query: PlainObj) {
-    return Object.entries(query)
-      .filter(([_k, v]) => !!v)
-      .map(pair => pair.join('='))
-      .join('&')
-  }
-
-  query: PlainObj
+  private _query: PlainObj
   variables: PlainObj
   request: RawRequest
   responses: RawResponse[]
+
+  environment: PlainObj = {}
 
   constructor (
     request: RawRequest,
@@ -23,8 +18,13 @@ export class Request {
   ) {
     this.request = request
     this.responses = responses
-    this.query = keyValueToHash(request.url.query || [])
+    this._query = keyValueToHash(request.url.query || [])
     this.variables = keyValueToHash(request.url.variable || [])
+  }
+
+  withEnv (env?: PlainObj) {
+    if (env) this.environment = env
+    return this
   }
 
   get method () {
@@ -36,7 +36,7 @@ export class Request {
   }
 
   get host () {
-    return this.request.url.host
+    return this.templateEnv(this.request.url.host.join(''))
   }
 
   get hasVariables () {
@@ -51,16 +51,42 @@ export class Request {
     return '/' + this.request.url.path.join('/')
   }
 
+  get query () {
+    return Object.entries(this._query)
+      .reduce(
+        (hsh, [k, v]) => ({
+          ...hsh,
+          [k]: this.templateEnv(v)
+        }),
+        {}
+      )
+  }
+
+  private templateEnv (str: string) {
+    const replacer = (match: string, k: string) => this.environment[k.trim()] || match
+    const regex = new RegExp('{{([^/]+)}}', 'g')
+    return str.replace(regex, replacer)
+  }
+
+  formatQuery (query: PlainObj) {
+    const joinedQuery = Object.entries({ ...this.query, ...query })
+      .filter(kv => !!kv[0])
+      .map(pair => pair.join('='))
+      .join('&')
+
+    return this.templateEnv(joinedQuery)
+  }
+
   formatPath (vars: { [key: string]: string }) {
-    const replacer = (_match: string, k: string) => vars[k]
-    const regex = /:([^/]+)/g
+    const replacer = (match: string, k: string) => vars[k] || match
+    const regex = new RegExp(':([^/]+)', 'g')
     return this.path.replace(regex, replacer)
   }
 
   axiosRequest (query: PlainObj = {}, params: PlainObj = {}): AxiosRequestConfig {
     return {
-      params: query,
-      baseURL: [this.host],
+      params: { ...this.query, ...query },
+      baseURL: this.host,
       url: this.formatPath(params),
       method: this.method
     }
