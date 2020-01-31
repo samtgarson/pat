@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Pages } from '@/src/constants'
 import { FunctionComponent } from "react"
 import { ChooseRequest } from "../choose-request"
@@ -10,9 +10,8 @@ import { EnvironmentFetcher } from '@/src/components/environment-fetcher/index'
 import { Request } from '@/src/components/request'
 import { Menu } from './menu'
 
-
 export const Runner: FunctionComponent = () => {
-  const { state: { error }, route, menu: { show } } = GlobalState.useContainer()
+  const {  state: { error }, route, menu: { show } } = GlobalState.useContainer()
   if (error) return <ErrorMessage error={ error } />
 
   if (show) return <Menu />

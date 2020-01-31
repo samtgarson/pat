@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, Fragment, useCallback } from "react"
+import { FunctionComponent, useState, useCallback } from "react"
 import { List } from './list'
 import React from "react"
 import { Box, Color } from "ink"
@@ -8,6 +8,7 @@ import { GlobalState } from "@/src/services/global-context"
 import { Node } from "@/src/models/node"
 import { useMenu } from "@/src/services/menu"
 import { MenuItems } from "@/types/menu"
+import Section from "../util/section"
 
 export const ChooseRequest: FunctionComponent = () => {
   const { route: { go }, state: { collection, environment }, config } = GlobalState.useContainer()
@@ -29,7 +30,7 @@ export const ChooseRequest: FunctionComponent = () => {
 
   const handleInput = useCallback((i: string) => setFilter(i.replace('?', '')), [])
 
-  return <Fragment>
+  return <Section title='Requests:'>
     <List collection={collection} filter={filter} onSelect={onSelect} />
     <Box marginTop={1}>
       <Color gray>{'> '}</Color>
@@ -37,5 +38,5 @@ export const ChooseRequest: FunctionComponent = () => {
         <TextInput value={filter} onChange={handleInput} placeholder="Search (? for menu)" />
       </Color>
     </Box>
-  </Fragment>
+  </Section>
 }

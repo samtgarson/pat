@@ -93,6 +93,7 @@ export interface Body {
 export interface RequestURL {
   raw:       string
   host:      string[]
+  protocol?: string
   path:      string[]
   variable?: URLVariable[]
   query?:    KeyValue[]

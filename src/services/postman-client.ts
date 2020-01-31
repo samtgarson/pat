@@ -15,6 +15,10 @@ type WorkspaceResponse = {
   workspace: Workspace
 }
 
+type EnvironmentsResponse = {
+  environments: Environment[]
+}
+
 type EnvironmentResponse = {
   environment: Environment
 }
@@ -42,6 +46,11 @@ class PostmanClient {
   async workspace (id: string) {
     const { data: { workspace } } = await this.client.get<WorkspaceResponse>(`/workspaces/${id}`)
     return workspace
+  }
+
+  async environments () {
+    const { data: { environments } } = await this.client.get<EnvironmentsResponse>(`/environments`)
+    return environments
   }
 
   async environment (id: string) {

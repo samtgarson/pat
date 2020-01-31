@@ -11,19 +11,14 @@ type ButtonProps = {
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({ selected, onHit, label, color = 'green' }) => {
-  const selector = useMemo(() => selected
-    ? <Color blue>{ figures.pointer } </Color>
-    : <Color grey>{'> '}</Color>,
-    [selected]
-  )
-
+  const selectorColor = useMemo(() => ({ blue: selected, grey: !selected, dim: !selected }), [selected])
   const labelColor = useMemo(() => ({ [color]: selected, grey: !selected }), [selected])
 
   useInput((_i, key) => { if (key.return && selected) onHit() })
 
   return (
     <Box>
-      {selector}
+      <Color {...selectorColor}>{ figures.pointer } </Color>
       <Text bold={selected}><Color {...labelColor}>{ label }</Color></Text>
     </Box>
   )

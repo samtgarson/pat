@@ -13,10 +13,4 @@ export const saveCollection = (config: Conf, collection: Collection, workspace: 
   const collectionKey = `collections.${collection.uid}`
   const collectionToSave: StoredCollection = { name: collection.info.name, uid: collection.uid, workspaceID: workspace.id }
   config.set(collectionKey, collectionToSave)
-
-  workspace.environments.forEach(e => {
-    const environmentsKey = `environments.${e.uid}`
-    const environmentToSave: StoredEnvironment = { ...e, workspaceID: workspace.id }
-    config.set(environmentsKey, environmentToSave)
-  })
 }

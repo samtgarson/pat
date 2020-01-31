@@ -9,3 +9,5 @@ export interface Description {
   type:    string
 }
 
+export type PlainObj = { [key: string]: string }
+
