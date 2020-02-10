@@ -1,6 +1,12 @@
 import { Request } from '@/src/models/request'
 import { Request as RawRequest, Method } from '@/types/postman/collection'
 import { hshToKeyValue } from '@/src/utils/key-value-converter'
+import { OAuth2Config } from '@/types/config'
+import { AuthTypes, AuthTransportTypes } from '@/src/constants'
+import { passwordGrant } from '@/src/services/password-grant'
+
+const mockToken = 'token'
+jest.mock('@/src/services/password-grant', () => ({ passwordGrant: jest.fn(async () => mockToken) }))
 
 describe('Request', () => {
   const env = { foo: 'bar' }
@@ -32,6 +38,31 @@ describe('Request', () => {
     header: []
   }
 
+  const authConfig: OAuth2Config = {
+    type: AuthTypes.OAuth2,
+    transport: AuthTransportTypes.Header,
+    config: {
+      url: '',
+      username: '',
+      password: ''
+    }
+  }
+
+  const axiosConfig = {
+    baseURL: 'bar',
+    data: '',
+    method: 'GET',
+    params: {
+      new: 'new',
+      custom: 'bar',
+      include: 'accounts'
+    },
+    url: '/bar/blam/bleep'
+  }
+
+  const vars = { new: 'new' }
+  const params = { baz: 'blam', bloop: 'bleep' }
+
   beforeEach(() => {
     req = new Request(defaultRequest, [])
   })
@@ -43,19 +74,27 @@ describe('Request', () => {
     })
   })
 
-  describe('withEnv', () => {
+  describe('withConfig', () => {
     it('sets the env', () => {
       expect(req.environment).toEqual({})
-      expect(req.withEnv(env).environment).toEqual(env)
+      expect(req.withConfig(env).environment).toEqual(env)
+    })
+
+    it('sets the auth', () => {
+      expect(req.environment).toEqual({})
+      expect(req.authentication).toBeUndefined()
+
+      const newReq = req.withConfig(env, authConfig)
+      expect(newReq).toMatchObject({
+        environment: env,
+        authentication: authConfig
+      })
     })
   })
 
   describe('with environment', () => {
-    const vars = { new: 'new' }
-    const params = { baz: 'blam', bloop: 'bleep' }
-
     beforeEach(() => {
-      req = req.withEnv(env)
+      req = req.withConfig(env)
     })
 
     describe('host', () => {
@@ -102,15 +141,49 @@ describe('Request', () => {
     describe('axiosRequest', () => {
       it('returns valid axios request config', () => {
         const result = req.axiosRequest(vars, params)
-        expect(result).toEqual({
-          baseURL: 'bar',
-          method: 'GET',
+        return expect(result).resolves.toEqual(axiosConfig)
+      })
+    })
+  })
+
+  describe('with OAuth2 query config', () => {
+    beforeEach(() => {
+      const conf = { ...authConfig, transport: AuthTransportTypes.Query }
+      req = req.withConfig(env, conf)
+    })
+
+    describe('axiosRequest', () => {
+      it('returns valid axios request config', () => {
+        const result = req.axiosRequest(vars, params)
+
+        expect(passwordGrant).toHaveBeenCalledWith(authConfig.config)
+
+        return expect(result).resolves.toEqual({
+          ...axiosConfig,
           params: {
-            new: 'new',
-            custom: 'bar',
-            include: 'accounts'
-          },
-          url: '/bar/blam/bleep'
+            ...axiosConfig.params,
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            access_token: mockToken
+          }
+        })
+      })
+    })
+  })
+
+  describe('with OAuth2 header config', () => {
+    beforeEach(() => {
+      req = req.withConfig(env, authConfig)
+    })
+
+    describe('axiosRequest', () => {
+      it('returns valid axios request config', () => {
+        const result = req.axiosRequest(vars, params)
+
+        expect(passwordGrant).toHaveBeenCalledWith(authConfig.config)
+
+        return expect(result).resolves.toEqual({
+          ...axiosConfig,
+          headers: { Authorization: `Bearer ${mockToken}` }
         })
       })
     })

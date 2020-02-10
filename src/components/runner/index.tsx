@@ -9,6 +9,7 @@ import CollectionFetcher from '@/src/components/collection-fetcher/index'
 import { EnvironmentFetcher } from '@/src/components/environment-fetcher/index'
 import { Request } from '@/src/components/request'
 import { Menu } from './menu'
+import { SetAuth } from '../set-auth'
 
 export const Runner: FunctionComponent = () => {
   const {  state: { error }, route, menu: { show } } = GlobalState.useContainer()
@@ -27,6 +28,8 @@ export const Runner: FunctionComponent = () => {
       return <Delete />
     case Pages.Request:
       return <Request />
+    case Pages.Auth:
+      return <SetAuth />
     default:
       throw new Error(`Could not match route ${route.path}`)
   }

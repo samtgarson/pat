@@ -1,11 +1,13 @@
 import { Collection } from "@/types/postman/collection"
 import PatError from "@/src/models/pat-error"
 import { useReducer } from "react"
-import { StoredCollection } from "@/types/config"
+import { PlainObj } from "@/types/postman/misc"
+import { AuthenticationConfig } from "@/types/config"
 
 export interface State {
   collection?: Collection
-  environment?: StoredCollection['environment']
+  environment?: PlainObj
+  authentication?: AuthenticationConfig
   error?: Error | PatError
   apiKey?: string
   workspaceID?: string

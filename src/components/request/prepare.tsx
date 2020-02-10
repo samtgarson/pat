@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState, useMemo, useCallback } from "react"
 import Section from "@/src/components/util/section"
 import { Summary } from "@/src/components/request/summary"
-import { Editor } from './editor'
+import { Form } from '@/src/components/util/form'
 import { useCursor } from "@/src/services/use-cursor"
 import { hshToKeyValue } from "@/src/utils/key-value-converter"
 import { Button } from "@/src/components/util/button"
@@ -49,15 +49,19 @@ export const PrepareRequest: FunctionComponent<PrepareRequestProps> = ({ request
   const { cursor } = useCursor(items.length)
   const selectedItem = useMemo(() => items[cursor], [cursor])
 
+  const onHit = useCallback(() => {
+    send(query, params, body)
+  }, [query, params, body])
+
   return <Section title={ title }>
     <Summary request={request} query={query} params={params} />
-    { request.hasQuery && <Editor
+    { request.hasQuery && <Form
       title='Query Params:'
       items={queryArray}
       cursor={cursor}
       update={({ key, value }) => setQuery({ ...query, [key]: value })}
     /> }
-    { request.hasVariables && <Editor
+    { request.hasVariables && <Form
       title='URL Params:'
       items={paramArray}
       cursor={cursor - queryArray.length}
@@ -67,7 +71,7 @@ export const PrepareRequest: FunctionComponent<PrepareRequestProps> = ({ request
       { request.hasBody && (
         <Button label="Edit request body" color='blue' selected={selectedItem === Buttons.Body} onHit={editBody} />
       ) }
-      <Button label="Send Request" selected={selectedItem === Buttons.Send} onHit={send} />
+      <Button label="Send Request" selected={selectedItem === Buttons.Send} onHit={onHit} />
       <Button label="Back" selected={selectedItem === Buttons.Back} color='blue' onHit={back} />
     </Box>
   </Section>

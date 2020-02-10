@@ -41,6 +41,8 @@ export const Menu: FunctionComponent = () => {
       case MenuItems.SwitchEnv:
         dispatch({ environment: undefined })
         return navigate(Pages.Home)
+      case MenuItems.Auth:
+        return navigate(Pages.Auth)
     }
   }, [go])
 

@@ -14,9 +14,11 @@ const CollectionFetcher: FunctionComponent = () => {
 
   const done = (collection: Collection, apiKey: string, workspaceID: string) => {
     const environmentKey = `collections.${collection.uid}.environment`
+    const authenticationKey = `collections.${collection.uid}.authentication`
 
     const payload: State = { collection, apiKey, workspaceID }
     if (config.has(environmentKey)) payload.environment = config.get(environmentKey)
+    if (config.has(authenticationKey)) payload.authentication = config.get(authenticationKey)
 
     dispatch(payload)
     config.set('lastUsedCollection', collection.uid)

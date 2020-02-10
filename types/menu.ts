@@ -4,7 +4,8 @@ export enum MenuItems {
   SwitchEnv        = 'Switch Envionment',
   Env              = 'Edit environment',
   Delete           = 'Delete this collection',
-  Back             = 'Back'
+  Back             = 'Back',
+  Auth             = 'Authentication'
 }
 
 export type MenuParams = {

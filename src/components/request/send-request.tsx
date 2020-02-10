@@ -27,7 +27,7 @@ export const SendRequest: FunctionComponent<SendRequestProps> = ({ request, args
 
   useEffect(() => {
     const fetch = async () => {
-      const config = request.axiosRequest(query, params, body)
+      const config = await request.axiosRequest(query, params, body)
       try {
         const res = await Axios(config)
         clear()

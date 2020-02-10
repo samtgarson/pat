@@ -2,6 +2,10 @@ import { Request as RawRequest, Response as RawResponse, Method } from '../../ty
 import { keyValueToHash } from '../utils/key-value-converter'
 import { AxiosRequestConfig } from 'axios'
 import { PlainObj } from '@/types/postman/misc'
+import { AuthTransportTypes } from '../constants'
+import { passwordGrant } from '@/src/services/password-grant'
+import { AuthenticationConfig } from '@/types/config'
+import { isOAuth2, isBasicAuth } from '@/src/utils/auth-utils'
 
 export class Request {
   private _query: PlainObj
@@ -9,10 +13,11 @@ export class Request {
   request: RawRequest
   responses: RawResponse[]
   environment: PlainObj = {}
+  authentication?: AuthenticationConfig
 
   static formatQuery (query: PlainObj) {
     return Object.entries(query)
-      .filter(kv => !!kv[0])
+      .filter(kv => !!kv[0] && kv[1])
       .map(pair => pair.join('='))
       .join('&')
   }
@@ -27,8 +32,9 @@ export class Request {
     this.variables = keyValueToHash(request.url.variable || [])
   }
 
-  withEnv (env?: PlainObj) {
+  withConfig (env?: PlainObj, authentication?: AuthenticationConfig) {
     if (env) this.environment = env
+    if (authentication) this.authentication = authentication
     return this
   }
 
@@ -86,26 +92,48 @@ export class Request {
     return this.templateEnv(joinedQuery)
   }
 
-  formatPath (vars: { [key: string]: string }) {
+  formatPath (vars: PlainObj) {
     const replacer = (match: string, k: string) => vars[k] || match
     const regex = new RegExp(':([^/]+)', 'g')
     return this.path.replace(regex, replacer)
   }
 
-  axiosRequest (query: PlainObj = {}, params: PlainObj = {}, body = ''): AxiosRequestConfig {
-    return {
+  axiosRequest (query: PlainObj = {}, params: PlainObj = {}, body = ''): Promise<AxiosRequestConfig> {
+    const conf = {
       params: { ...this.query, ...query },
       baseURL: this.host,
       url: this.formatPath(params),
       method: this.method,
       data: body
     }
+    return this.injectAuth(conf)
   }
 
   private templateEnv (str: string) {
     const replacer = (match: string, k: string) => this.environment[k.trim()] || match
     const regex = new RegExp('{{([^/]+)}}', 'g')
     return str.replace(regex, replacer)
+  }
+
+  private async injectAuth (config: AxiosRequestConfig) {
+    if (!this.authentication) return config
+
+    let value = await this.getAuthValue()
+    if (this.authentication.transport === AuthTransportTypes.Query) {
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      config.params.access_token = value
+    } else if (this.authentication.transport === AuthTransportTypes.Header) {
+      if (isOAuth2(this.authentication)) value = `Bearer ${value}`
+      config.headers = { ...config.headers, Authorization: value }
+    }
+    return config
+  }
+
+  private async getAuthValue () {
+    const auth = this.authentication
+    if (!auth) return ''
+    if (isOAuth2(auth)) return passwordGrant(auth.config)
+    if (isBasicAuth(auth)) return ''
   }
 }
 

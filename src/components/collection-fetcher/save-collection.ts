@@ -1,7 +1,7 @@
 import Conf = require("conf")
 import { Collection } from "@/types/postman/collection"
 import { Workspace } from "@/types/postman/workspace"
-import { StoredWorkspace, StoredCollection, StoredEnvironment } from "@/types/config"
+import { StoredWorkspace, StoredCollection } from "@/types/config"
 
 export const saveCollection = (config: Conf, collection: Collection, workspace: Workspace, apiKey: string) => {
   const workspaceKey = `workspaces.${workspace.id}`

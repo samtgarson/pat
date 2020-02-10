@@ -8,11 +8,11 @@ import { PlainObj } from "@/types/postman/misc"
 import { SendRequest } from "@/src/components/request/send-request"
 
 export const Request: FunctionComponent = () => {
-  const { route: { params: routeParams, back }, state: { environment } } = GlobalState.useContainer()
-  useMenu([MenuItems.SwitchRequest, MenuItems.Env, MenuItems.SwitchEnv])
+  const { route: { params: routeParams, back }, state: { environment, authentication } } = GlobalState.useContainer()
+  useMenu([MenuItems.SwitchRequest, MenuItems.Env, MenuItems.SwitchEnv, MenuItems.Auth])
 
   const node: Node = routeParams.node
-  const request = node.request?.withEnv(environment)
+  const request = node.request?.withConfig(environment, authentication)
   if (!node || !request) return null
 
   const [args, setArgs] = useState()

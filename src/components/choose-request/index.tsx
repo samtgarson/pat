@@ -21,7 +21,7 @@ export const ChooseRequest: FunctionComponent = () => {
     return null
   }
 
-  useMenu([MenuItems.SwitchCollection, MenuItems.Env, MenuItems.SwitchEnv, MenuItems.Delete])
+  useMenu([MenuItems.SwitchCollection, MenuItems.Env, MenuItems.SwitchEnv, MenuItems.Auth, MenuItems.Delete])
 
   const [filter, setFilter] = useState('')
   const onSelect = useCallback((node: Node) => {

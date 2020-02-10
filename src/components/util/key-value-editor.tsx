@@ -10,6 +10,7 @@ type KeyValueEditorProps<T extends KeyValue> = {
   keyWidth: number
   pointer?: Element
   update: (item: T) => void
+  secret?: boolean
 }
 
 export const getMaxWidth = <T extends KeyValue = KeyValue>(list: T[]) => (
@@ -21,14 +22,15 @@ export const KeyValueEditorFactory = <T extends KeyValue = KeyValue>(): Function
   selected,
   keyWidth,
   update,
-  pointer = <Color blue>{figures.pointer} </Color>
+  pointer = <Color blue>{figures.pointer} </Color>,
+  secret = false
 }) => (
   <Box>
     { selected ? pointer : '  ' }
     <Box width={keyWidth + 2}><Color white>{ item.key }: </Color></Box>
     { selected
-      ? <Input value={item.value} onChange={value => update({ ...item, value })} />
-      : <Text>{ item.value }</Text>
+      ? <Input mask={secret ? figures.bullet : undefined} value={item.value} onChange={value => update({ ...item, value })} />
+      : <Text>{ secret ? item.value.replace(/./g, figures.bullet) : item.value }</Text>
     }
   </Box>
 )
