@@ -13,9 +13,14 @@ I was bummed out to find one of the only things I couldn't use after moving to a
 ### Progress
 
 - [x] Fetch collections from the API
-- [ ] Edit the environment
-- [ ] Make basic requests
-- [ ] Authentication
+- [x] Edit the environment
+- [x] Make basic requests
+- [x] Authentication
+- [ ] More authentication
+- [ ] Request history
+- [ ] Add other collection formats
+  - [ ] Postman JSON files
+  - [ ] Insomnia
 
 ## Install and Use
 
@@ -34,7 +39,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/samtga
 ```sh
 npm i        # Install dependencies
 npm run test # Run tests
-npm run dev  # Run the typescript compiler
+npm run dev  # Run the typescript compiler in watch mode
 
 ./bin/pat    # Run the CLI locally
 ```

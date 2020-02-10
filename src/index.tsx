@@ -3,6 +3,7 @@ import Commander from 'commander'
 import React from 'react'
 import { render } from 'ink'
 import App from './app'
+import Conf from 'conf'
 
 const cmd = new Commander.Command()
 
@@ -13,6 +14,10 @@ cmd
   .name('pat')
   .version(pkg.version)
   .description(pkg.description)
+
+cmd
+  .command('post', { isDefault: true })
+  .description('Run Pat to deliver some post')
   .action(async () => {
     const { waitUntilExit } = render(
       <App />,
@@ -23,6 +28,11 @@ cmd
     )
     return waitUntilExit
   })
+
+cmd
+  .command('config-path')
+  .description('Print the path to the config file')
+  .action(() => console.log(new Conf().path))
 
 const main = async () => {
   try {
