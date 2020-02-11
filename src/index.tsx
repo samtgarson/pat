@@ -1,4 +1,3 @@
-import pkg from '../package.json'
 import Commander from 'commander'
 import React from 'react'
 import { render } from 'ink'
@@ -10,10 +9,9 @@ const cmd = new Commander.Command()
 cmd
   .storeOptionsAsProperties(false)
   .passCommandToAction(false)
-
   .name('pat')
-  .version(pkg.version)
-  .description(pkg.description)
+  .version(process.env.PAT_VERSION || 'next')
+  .description('Postman on your command line')
 
 cmd
   .command('post', { isDefault: true })
@@ -26,7 +24,7 @@ cmd
         debug: !!process.env.PAT_DEBUG
       }
     )
-    return waitUntilExit
+    await waitUntilExit
   })
 
 cmd

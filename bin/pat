@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
-const tsConfig = require("../tsconfig.json")
 const tsConfigPaths = require("tsconfig-paths")
+const { readFileSync } = require('fs')
+const tsConfig = require("../tsconfig.json")
+
+const { version } = JSON.parse(readFileSync('package.json').toString())
+
+process.env.PAT_VERSION = version
 
 const baseUrl = "./dist"
-const cleanup = tsConfigPaths.register({
+tsConfigPaths.register({
   baseUrl,
   paths: tsConfig.compilerOptions.paths
 })

@@ -1,13 +1,22 @@
 {
-  "name": "pat",
-  "version": "0.0.1",
+  "name": "@samtgarson/pat",
+  "version": "0.1.0-beta",
   "license": "MIT",
-  "bin": "cli.js",
+  "bin": {
+    "pat": "bin/pat"
+  },
   "description": "Postman on the command line",
-  "private": true,
+  "files": [
+    "tsconfig.json",
+    "types/**/*",
+    "dist/**/*",
+    "bin/**/*"
+  ],
+  "keywords": ["pat", "postman", "cli", "http", "client"],
   "scripts": {
+    "env": "env",
     "dev": "tsc --watch -p ./tsconfig.build.json",
-    "build": "tsc -p ./tsconfig.build.json",
+    "build": "rm -rf dist && tsc -p ./tsconfig.build.json",
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx ."
   },
@@ -118,7 +127,8 @@
       "react/prop-types": 0,
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-use-before-define": 0,
-      "@typescript-eslint/no-empty-function": 0
+      "@typescript-eslint/no-empty-function": 0,
+      "@typescript-eslint/ban-ts-ignore": 0
     }
   }
 }
