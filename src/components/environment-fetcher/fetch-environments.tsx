@@ -1,8 +1,8 @@
 import PostmanClient from "@/src/services/postman-client"
 import React, { FunctionComponent, useEffect } from "react"
-import Loader from "../util/loader"
-import { GlobalState } from "@/src/services/global-context"
+import { Loader } from "../util/loader"
 import { Environment } from "@/types/postman/environments"
+import { useAsyncFetch } from "@/src/utils/use-async"
 
 type FetchEnvironmentsProps = {
   client: PostmanClient
@@ -10,20 +10,8 @@ type FetchEnvironmentsProps = {
 }
 
 export const FetchEnvironments: FunctionComponent<FetchEnvironmentsProps> = ({ client, set }) => {
-  const { state: { dispatch } } = GlobalState.useContainer()
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const environments = await client.environments()
-        set(environments)
-      } catch (error) { dispatch({ error }) }
-    }
-
-    fetch()
-  }, [])
+  useAsyncFetch(() => client.environments(), set)
 
   return <Loader>Fetching environments</Loader>
-
 }
 

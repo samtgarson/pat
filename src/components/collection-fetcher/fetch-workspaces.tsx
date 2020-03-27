@@ -1,8 +1,8 @@
 import React, { useEffect, FunctionComponent } from 'react'
 import PostmanClient from '@/src/services/postman-client'
-import Loader from '@/src/components//util/loader'
+import { Loader } from '@/src/components//util/loader'
 import PatError from '@/src/models/pat-error'
-import { GlobalState } from "@/src/services/global-context"
+import { useAsyncFetch } from '@/src/utils/use-async'
 
 type FetchWorkspacesProps = {
   client: PostmanClient
@@ -10,19 +10,13 @@ type FetchWorkspacesProps = {
 }
 
 export const FetchWorkspaces: FunctionComponent<FetchWorkspacesProps> = ({ client, set }) => {
-  const { state: { dispatch } } = GlobalState.useContainer()
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const workspaces = await client.workspaces()
-        if (!workspaces.length) throw new PatError('Could not find any workspaces')
-        set(workspaces)
-      } catch (error) { dispatch({ error }) }
+  useAsyncFetch(
+    () => client.workspaces(),
+    workspaces => {
+      if (!workspaces.length) throw new PatError('Could not find any workspaces')
+      set(workspaces)
     }
-
-    fetch()
-  }, [])
+  )
 
   return <Loader>Fetching workspaces</Loader>
 }
