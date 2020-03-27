@@ -13,11 +13,13 @@ export interface State {
   workspaceID?: string
 }
 
+const stringify = (str: string) => str && JSON.stringify(str).substr(0, 50)
+
 const reducer = (state: State, action: State) => {
   if (process.env.PAT_DEBUG) {
     Object.entries(action).forEach(([k, v]) => {
       const val = typeof v === undefined ? 'undefined' : v
-      console.log('[SETTING STATE] ', `${k}: ${JSON.stringify(val).substr(0, 50)}`)
+      console.log('[SETTING STATE] ', `${k}: ${stringify(val)}`)
     })
   }
   return { ...state, ...action }

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, Fragment }  from 'react'
-import { Text, Color, Box } from 'ink'
+import { Color, Box } from 'ink'
 
 type SectionProps = {
   title: string

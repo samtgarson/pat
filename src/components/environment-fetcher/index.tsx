@@ -13,9 +13,8 @@ export const EnvironmentFetcher: FunctionComponent = () => {
     route: { go }
   } = GlobalState.useContainer()
 
-  if (environment) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const key = `collections.${collection!.uid}.environment`
+  if (environment && collection) {
+    const key = `collections.${collection.uid}.environment`
     config.set(key, environment)
     go(Pages.Home)
   }

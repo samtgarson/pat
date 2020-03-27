@@ -16,7 +16,7 @@ export const ChooseRequest: FunctionComponent = () => {
     go(Pages.ChooseCollection)
     return null
   }
-  if (!environment && config.has('environments')) {
+  if (!environment) {
     go(Pages.ChooseEnvironment)
     return null
   }

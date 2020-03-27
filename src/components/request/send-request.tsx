@@ -3,7 +3,7 @@ import { Response } from "@/src/models/response"
 import { FunctionComponent, useState, useEffect, Fragment, useCallback } from "react"
 import { PlainObj } from "@/types/postman/misc"
 import Axios from "axios"
-import Loader from "@/src/components/util/loader"
+import { Loader } from "@/src/components/util/loader"
 import React from "react"
 import { Box } from 'ink'
 import { Button } from "@/src/components/util/button"

@@ -1,10 +1,13 @@
+<p align="center">
 📮
 
-**pat**—_postman on the command line_
+<p><strong>pat</strong><em>—postman on the command line</em>
 
-Pat is an interactive Postman CLI built with [Ink](https://github.com/vadimdemedes/ink).
+<p>Pat is an interactive Postman CLI built with <a href="https://github.com/vadimdemedes/ink">ink</a>.
 
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsamtgarson%2Fpat%2Fbadge&style=flat)](https://actions-badge.atrox.dev/samtgarson/pat/goto)
+<a href="https://actions-badge.atrox.dev/samtgarson/pat/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsamtgarson%2Fpat%2Fbadge&style=flat" /></a>
+</p>
+
 
 ## Why?
 

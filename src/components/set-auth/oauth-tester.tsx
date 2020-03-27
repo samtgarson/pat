@@ -1,6 +1,6 @@
 import { FunctionComponent, useState, useCallback } from "react"
 import { passwordGrant, PasswordGrantParams } from "@/src/services/password-grant"
-import Loader from "@/src/components/util/loader"
+import { Loader } from "@/src/components/util/loader"
 import React from "react"
 import { Color } from "ink"
 import figures from "figures"

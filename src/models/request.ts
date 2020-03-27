@@ -104,7 +104,8 @@ export class Request {
       baseURL: this.host,
       url: this.formatPath(params),
       method: this.method,
-      data: body
+      data: body,
+      timeout: 30000
     }
     return this.injectAuth(conf)
   }
