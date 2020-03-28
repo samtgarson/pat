@@ -1,11 +1,9 @@
 import { createContainer } from 'unstated-next'
-import Conf from 'conf'
 import { createRouter } from './route'
 import { createState } from './state'
 import { createMenuState } from './menu'
 import useForceUpdate from 'use-force-update'
-
-const config = new Conf()
+import { config } from '@/src/utils/config'
 
 const clear = () => {
   const fill = Array(process.stdout.rows).fill('\n').join('')

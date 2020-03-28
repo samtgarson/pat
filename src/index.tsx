@@ -2,7 +2,11 @@ import Commander from 'commander'
 import React from 'react'
 import { render } from 'ink'
 import App from './app'
-import Conf from 'conf'
+import pkg from '@/package.json'
+import { config } from '@/src/utils/config'
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+if (process.env.NODE_ENV === 'production') require('source-map-support').install()
 
 const cmd = new Commander.Command()
 
@@ -10,7 +14,7 @@ cmd
   .storeOptionsAsProperties(false)
   .passCommandToAction(false)
   .name('pat')
-  .version(process.env.PAT_VERSION || 'next')
+  .version(pkg.version)
   .description('Postman on your command line')
 
 cmd
@@ -30,7 +34,7 @@ cmd
 cmd
   .command('config-path')
   .description('Print the path to the config file')
-  .action(() => console.log(new Conf().path))
+  .action(() => console.log(config.path))
 
 const main = async () => {
   try {

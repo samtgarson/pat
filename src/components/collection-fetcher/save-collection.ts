@@ -1,4 +1,4 @@
-import Conf = require("conf")
+import Conf from "conf"
 import { Collection } from "@/types/postman/collection"
 import { Workspace } from "@/types/postman/workspace"
 import { StoredWorkspace, StoredCollection } from "@/types/config"

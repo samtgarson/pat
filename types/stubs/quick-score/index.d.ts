@@ -22,7 +22,7 @@ declare module 'quick-score' {
   type Scorer = (text: any, query: string) => number
 
   type Options = string[] | {
-    keys?: Array<string | { name: string; scorer: Scorer }>
+    keys?: Array<string | { name: string, scorer: Scorer }>
     scorer?: Scorer
     config?: any
     minimumScore?: number
