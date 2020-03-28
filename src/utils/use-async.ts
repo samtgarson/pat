@@ -4,7 +4,7 @@ import { GlobalState } from "@/src/services/global-context"
 const allArePresent = (arr: any[] = []) => arr.every(i => typeof i !== undefined)
 
 export function useAsyncFetch<T> (
-  fn: () => Promise<T> | undefined,
+  fetcher: () => Promise<T> | undefined,
   done: (data: T) => void,
   errorHandler?: (error: Error) => void,
   dependencies?: Array<any>
@@ -19,7 +19,7 @@ export function useAsyncFetch<T> (
     let mounted = true
     const run = async () => {
       try {
-        const data = await fn()
+        const data = await fetcher()
         if (mounted && data) done(data)
       } catch (error) {
         handleError(error)

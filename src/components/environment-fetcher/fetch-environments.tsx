@@ -1,5 +1,5 @@
 import PostmanClient from "@/src/services/postman-client"
-import React, { FunctionComponent, useEffect } from "react"
+import React, { FunctionComponent } from "react"
 import { Loader } from "../util/loader"
 import { Environment } from "@/types/postman/environments"
 import { useAsyncFetch } from "@/src/utils/use-async"
