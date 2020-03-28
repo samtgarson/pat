@@ -12,7 +12,13 @@
     "dist/**/*",
     "bin/**/*"
   ],
-  "keywords": ["pat", "postman", "cli", "http", "client"],
+  "keywords": [
+    "pat",
+    "postman",
+    "cli",
+    "http",
+    "client"
+  ],
   "scripts": {
     "env": "env",
     "dev": "tsc --watch -p ./tsconfig.build.json",
@@ -37,6 +43,7 @@
     "mime-types": "^2.1.26",
     "quick-score": "0.0.5",
     "react": "^16.12.0",
+    "react-error-boundary": "^1.2.5",
     "tsconfig-paths": "^3.9.0",
     "unstated-next": "^1.1.0",
     "use-force-update": "^1.0.7"
