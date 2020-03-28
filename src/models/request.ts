@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Request as RawRequest, Response as RawResponse, Method } from '../../types/postman/collection'
 import { keyValueToHash } from '../utils/key-value-converter'
 import { AxiosRequestConfig } from 'axios'
 import { PlainObj } from '@/types/postman/misc'
-import { AuthTransportTypes } from '../constants'
+import { AuthTransportTypes, TIMEOUT } from '../constants'
 import { passwordGrant } from '@/src/services/password-grant'
 import { AuthenticationConfig } from '@/types/config'
 import { isOAuth2, isBasicAuth } from '@/src/utils/auth-utils'
@@ -105,7 +106,7 @@ export class Request {
       url: this.formatPath(params),
       method: this.method,
       data: body,
-      timeout: 30000
+      timeout: TIMEOUT
     }
     return this.injectAuth(conf)
   }
@@ -120,20 +121,25 @@ export class Request {
     if (!this.authentication) return config
 
     let value = await this.getAuthValue()
-    if (this.authentication.transport === AuthTransportTypes.Query) {
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      config.params.access_token = value
-    } else if (this.authentication.transport === AuthTransportTypes.Header) {
-      if (isOAuth2(this.authentication)) value = `Bearer ${value}`
-      config.headers = { ...config.headers, Authorization: value }
+
+    switch (this.authentication.transport) {
+      case AuthTransportTypes.Query:
+        config.params.access_token = value
+        break
+
+      case AuthTransportTypes.Header:
+        if (isOAuth2(this.authentication)) value = `Bearer ${value}`
+        config.headers = { ...config.headers, Authorization: value }
+        break
     }
+
     return config
   }
 
   private async getAuthValue () {
     const auth = this.authentication
     if (!auth) return ''
-    if (isOAuth2(auth)) return passwordGrant(auth.config)
+    if (isOAuth2(auth)) return await passwordGrant(auth.config)
     if (isBasicAuth(auth)) return ''
   }
 }

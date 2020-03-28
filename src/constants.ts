@@ -18,3 +18,5 @@ export enum AuthTransportTypes {
   Header = 'Header',
   Query  = 'Query Param'
 }
+
+export const TIMEOUT = 30000

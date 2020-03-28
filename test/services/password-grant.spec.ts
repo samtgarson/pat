@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { passwordGrant } from "@/src/services/password-grant"
 import mockAxios from 'jest-mock-axios'
+import { TIMEOUT } from "@/src/constants"
 
 
 describe('password grant', () => {
@@ -22,7 +23,7 @@ describe('password grant', () => {
       grant_type: 'password',
       username,
       password
-    })
+    }, { timeout: TIMEOUT })
     return result
   })
 

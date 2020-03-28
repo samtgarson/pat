@@ -2,7 +2,7 @@ import { Request } from '@/src/models/request'
 import { Request as RawRequest, Method } from '@/types/postman/collection'
 import { hshToKeyValue } from '@/src/utils/key-value-converter'
 import { OAuth2Config } from '@/types/config'
-import { AuthTypes, AuthTransportTypes } from '@/src/constants'
+import { AuthTypes, AuthTransportTypes, TIMEOUT } from '@/src/constants'
 import { passwordGrant } from '@/src/services/password-grant'
 
 const mockToken = 'token'
@@ -57,7 +57,8 @@ describe('Request', () => {
       custom: 'bar',
       include: 'accounts'
     },
-    url: '/bar/blam/bleep'
+    url: '/bar/blam/bleep',
+    timeout: TIMEOUT
   }
 
   const vars = { new: 'new' }
