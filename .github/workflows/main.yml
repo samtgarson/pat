@@ -38,15 +38,15 @@ jobs:
         run: npm run build
 
       - name: Generate release notes
-        id: release-notes
+        id: releaseNotes
         if: steps.publish.type != 'none'
         run: |
           notes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- [%h] %s" -i -E)
           notes="${notes//$'\n'/%0A}"
           notes="${notes//$'\r'/%0D}"
-          echo "::set-output name=key::$notes"
+          echo "::set-output name=notes::$notes"
 
-      - run: echo ${{ steps.release-notes.notes }}
+      - run: echo "${{ steps.releaseNotes.notes }}"
 
       # - name: Publish
       #   id: publish
@@ -55,10 +55,10 @@ jobs:
       #     token: ${{ secrets.NPM_TOKEN }}
 
       # - name: Generate release notes
-      #   id: release-notes
+      #   id: releaseNotes
       #   if: steps.publish.type != 'none'
       #   run: |
-      #     notes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- [%h] %s" -i -E > release-notes.txt)
+      #     notes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- [%h] %s" -i -E > releaseNotes.txt)
       #     echo "::set-output name=key::$notes"
 
       # - name: Create Release
@@ -69,4 +69,4 @@ jobs:
       #   with:
       #     tag_name: v${{ steps.publish.version }}
       #     release_name: Release v${{ github.ref }}
-      #     body: ${{ steps.release-notes.notes }}
+      #     body: ${{ steps.releaseNotes.notes }}
