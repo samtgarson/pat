@@ -47,7 +47,7 @@ jobs:
           echo "::set-output name=notes::$notes"
           echo "$notes" > release-notes.txt
 
-      - run: echo "cat release-notes.txt"
+      - run: cat release-notes.txt
 
       # - name: Publish
       #   id: publish
