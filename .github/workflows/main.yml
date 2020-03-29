@@ -26,16 +26,22 @@ jobs:
       - uses: actions/checkout@v1
         name: Checkout
 
-      # - name: Set Node version
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: '12.x'
+      - name: Set Node version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Build package
-      #   run: npm run build
+      - name: Build package
+        run: npm run build
+
+      - name: Publish
+        id: publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Generate release notes
         id: releaseNotes
@@ -46,27 +52,12 @@ jobs:
           notes="${notes//$'\r'/%0D}"
           echo "::set-output name=notes::$notes"
 
-      - run: echo "${{ steps.releaseNotes.outputs.notes }}"
-
-      # - name: Publish
-      #   id: publish
-      #   uses: JS-DevTools/npm-publish@v1
-      #   with:
-      #     token: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Generate release notes
-      #   id: releaseNotes
-      #   if: steps.publish.type != 'none'
-      #   run: |
-      #     notes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- [%h] %s" -i -E > releaseNotes.txt)
-      #     echo "::set-output name=key::$notes"
-
-      # - name: Create Release
-      #   if: steps.publish.type != 'none'
-      #   uses: actions/create-release@latest
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: v${{ steps.publish.version }}
-      #     release_name: Release v${{ github.ref }}
-      #     body: ${{ steps.releaseNotes.notes }}
+      - name: Create Release
+        if: steps.publish.outputs.type != 'none'
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.publish.outputs.version }}
+          release_name: Release v${{ github.ref }}
+          body: "${{ steps.releaseNotes.outputs.notes }}"
