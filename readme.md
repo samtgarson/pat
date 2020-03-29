@@ -1,11 +1,11 @@
 <p align="center">
 📮
 
-<p><strong>pat</strong><em>—postman on the command line</em>
+<p align="center"><strong>pat</strong><em>—postman on the command line</em></p>
 
-<p>Pat is an interactive Postman CLI built with <a href="https://github.com/vadimdemedes/ink">ink</a>.
+<p align="center">Pat is an interactive Postman CLI built with <a href="https://github.com/vadimdemedes/ink">ink</a>.</p>
 
-<a href="https://actions-badge.atrox.dev/samtgarson/pat/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsamtgarson%2Fpat%2Fbadge&style=flat" /></a>
+<p align="center"><a href="https://actions-badge.atrox.dev/samtgarson/pat/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsamtgarson%2Fpat%2Fbadge&style=flat" /></a></p>
 </p>
 
 
@@ -28,7 +28,7 @@ I was bummed out to find one of the only things I couldn't use after moving to a
 ## Install and Use
 
 ```bash
-npm install --global pat
+npm install --global pat-cli
 
 pat # follow the instructions from here
 ```
