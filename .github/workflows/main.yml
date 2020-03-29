@@ -17,3 +17,56 @@ jobs:
       - run: npm t
         name: Test
 
+  publish:
+    runs-on: ubuntu-latest
+    name: Build & Publish
+    needs: test
+    if: success() && github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v1
+        name: Checkout
+
+      - name: Set Node version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Generate release notes
+        id: release-notes
+        if: steps.publish.type != 'none'
+        run: |
+          notes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- [%h] %s" -i -E > release-notes.txt)
+          notes="${content//$'\n'/'%0A'}"
+          notes="${content//$'\r'/'%0D'}"
+          echo "::set-output name=key::$notes"
+
+      - run: echo ${{ steps.release-notes.notes }}
+
+      # - name: Publish
+      #   id: publish
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
+
+      # - name: Generate release notes
+      #   id: release-notes
+      #   if: steps.publish.type != 'none'
+      #   run: |
+      #     notes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- [%h] %s" -i -E > release-notes.txt)
+      #     echo "::set-output name=key::$notes"
+
+      # - name: Create Release
+      #   if: steps.publish.type != 'none'
+      #   uses: actions/create-release@latest
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: v${{ steps.publish.version }}
+      #     release_name: Release v${{ github.ref }}
+      #     body: ${{ steps.release-notes.notes }}
