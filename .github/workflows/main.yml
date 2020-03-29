@@ -46,7 +46,7 @@ jobs:
           notes="${notes//$'\r'/%0D}"
           echo "::set-output name=notes::$notes"
 
-      - run: echo ${{ steps.releaseNotes.outputs.notes }}
+      - run: echo "${{ steps.releaseNotes.outputs.notes }}"
 
       # - name: Publish
       #   id: publish
