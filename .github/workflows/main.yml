@@ -42,8 +42,8 @@ jobs:
         if: steps.publish.type != 'none'
         run: |
           notes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- [%h] %s" -i -E)
-          notes="${content//$'\n'/'%0A'}"
-          notes="${content//$'\r'/'%0D'}"
+          notes="${notes//$'\n'/%0A}"
+          notes="${notes//$'\r'/%0D}"
           echo "::set-output name=key::$notes"
 
       - run: echo ${{ steps.release-notes.notes }}
