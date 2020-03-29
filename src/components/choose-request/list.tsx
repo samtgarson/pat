@@ -15,7 +15,6 @@ type ListProps = {
 }
 
 const Window = WindowFactory<QuickScoreResult<SearchCandidate>>()
-
 const emptyMessage = () => <Color gray>No matching requests.</Color>
 
 export const List: FunctionComponent<ListProps> = ({ collection, filter, onSelect }) => {

@@ -1,6 +1,6 @@
 {
   "name": "@samtgarson/pat",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "bin": {
     "pat": "bin/pat"
@@ -49,7 +49,6 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "@rollup/plugin-typescript": "^3.0.0",
     "@samtgarson/eslint-config": "^2.1.0",
     "@types/inflection": "^1.5.28",
     "@types/jest": "^24.0.25",

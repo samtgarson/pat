@@ -1,9 +1,11 @@
-import { FunctionComponent, useState, useCallback } from "react"
+import { FunctionComponent, useState } from "react"
 import { passwordGrant, PasswordGrantParams } from "@/src/services/password-grant"
 import { Loader } from "@/src/components/util/loader"
 import React from "react"
 import { Color } from "ink"
 import figures from "figures"
+import { useAsyncFetch } from "@/src/utils/use-async"
+import PatError from "@/src/models/pat-error"
 
 enum TestState {
   Loading = 'LOADING',
@@ -16,20 +18,21 @@ type OAuthTesterProps = {
 }
 
 export const OAuthTester: FunctionComponent<OAuthTesterProps> = ({ params }) => {
-  const [testState, setTestState] = useState<TestState | undefined>()
+  const [testState, setTestState] = useState<TestState | undefined>(TestState.Loading)
   const [testResult, setTestResult] = useState<string | undefined>()
 
-  const test = useCallback(async () => {
-    try {
-      setTestState(TestState.Loading)
-      const result = await passwordGrant(params)
+  useAsyncFetch(
+    () => passwordGrant(params),
+    result => {
       setTestResult(result)
       setTestState(TestState.Success)
-    } catch (e) {
-      setTestResult(e.isPatError ? e.message : 'Something went wrong')
+    },
+    e => {
+      setTestResult(PatError.isPatError(e) ? e.message : 'Something went wrong')
       setTestState(TestState.Failure)
-    }
-  }, [params])
+    },
+    [params]
+  )
 
   switch (testState) {
     case TestState.Loading:
@@ -39,7 +42,6 @@ export const OAuthTester: FunctionComponent<OAuthTesterProps> = ({ params }) => 
     case TestState.Failure:
       return <Color red>{ figures.cross } { testResult }</Color>
     default:
-      test()
       return null
   }
 

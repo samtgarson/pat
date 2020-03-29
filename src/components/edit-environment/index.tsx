@@ -11,12 +11,12 @@ type EditEnvironmentProps = {
 }
 
 const Editor = KeyValueEditorFactory()
+const Window = WindowFactory<KeyValue>()
 
 export const EditEnvironment: FunctionComponent<EditEnvironmentProps> = ({ back }) => {
   const { state: { environment, dispatch, collection }, config } = GlobalState.useContainer()
   const [local, setLocal] = useState(environment)
   const [cursor, setCursor] = useState(0)
-  const Window = WindowFactory<KeyValue>()
   const items = useMemo(() => local && hshToKeyValue(local), [local])
   const keyWidth = useMemo(
     () => items ? getMaxWidth(items) : 0,
@@ -34,10 +34,10 @@ export const EditEnvironment: FunctionComponent<EditEnvironmentProps> = ({ back 
     [local]
   )
 
-  const done = () => {
+  const done = useCallback(() => {
     dispatch({ environment: local })
     back()
-  }
+  }, [local])
 
   if (!items) return null
   return <Section title="Edit environment:">

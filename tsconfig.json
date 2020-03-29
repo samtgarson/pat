@@ -16,6 +16,6 @@
     },
     "typeRoots": ["node_modules/@types", "types/stubs"]
   },
-  "exclude": ["bin"],
-  "include": ["src", "test", "types"]
+  "exclude": ["bin", "dist"],
+  "include": ["src", "test"]
 }

@@ -17,8 +17,8 @@ const CollectionFetcher: FunctionComponent = () => {
     const authenticationKey = `collections.${collection.uid}.authentication`
 
     const payload: State = { collection, apiKey, workspaceID }
-    if (config.has(environmentKey)) payload.environment = config.get(environmentKey)
-    if (config.has(authenticationKey)) payload.authentication = config.get(authenticationKey)
+    payload.environment = config.has(environmentKey) ? config.get(environmentKey) : undefined
+    payload.authentication = config.has(authenticationKey) ? config.get(authenticationKey) : undefined
 
     dispatch(payload)
     config.set('lastUsedCollection', collection.uid)
