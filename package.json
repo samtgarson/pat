@@ -1,5 +1,5 @@
 {
-  "name": "@samtgarson/pat",
+  "name": "pat-cli",
   "version": "0.2.1",
   "license": "MIT",
   "bin": {
@@ -17,8 +17,8 @@
     "client"
   ],
   "scripts": {
-    "dev": "tsc --watch -p ./tsconfig.build.json",
-    "build": "rm -rf bat && NODE_ENV=production rollup -c",
+    "dev": "rollup -c --watch",
+    "build": "rm -rf bin && NODE_ENV=production rollup -c",
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx ."
   },
