@@ -1,8 +1,8 @@
 import { Request } from "@/src/models/request"
 import { Response } from "@/src/models/response"
-import { FunctionComponent, useState, Fragment, useCallback, useEffect } from "react"
+import { FunctionComponent, useState, useEffect, Fragment, useCallback } from "react"
 import { PlainObj } from "@/types/postman/misc"
-import Axios, { AxiosError } from "axios"
+import Axios from "axios"
 import { Loader } from "@/src/components/util/loader"
 import React from "react"
 import { Box } from 'ink'
@@ -11,7 +11,6 @@ import { preview } from "@/src/services/spawner"
 import { ErrorMessage } from "@/src/components/util/error"
 import { useCursor } from "@/src/services/use-cursor"
 import { GlobalState } from "@/src/services/global-context"
-import { useAsyncFetch } from "@/src/utils/use-async"
 
 type SendRequestProps = {
   request: Request
@@ -19,42 +18,34 @@ type SendRequestProps = {
   again: () => void
 }
 
-const isAxiosError = (e: any): e is AxiosError => !!e.isAxiosError
-
 export const SendRequest: FunctionComponent<SendRequestProps> = ({ request, args: { query, params, body }, again }) => {
   const [response, setResponse] = useState<Response>()
   const [error, setError] = useState()
   const { cursor, setLength } = useCursor(3)
-  const [status, setStatus] = useState('')
-  const [config, setConfig] = useState()
 
   const { clear, rerender, route: { back } } = GlobalState.useContainer()
 
-  useAsyncFetch(
-    () => request.axiosRequest(query, params, body),
-    setConfig
-  )
   useEffect(() => {
-    setStatus(config ? 'Making request' : 'Generating request config')
-  }, [config])
+    let mounted = true
+    const fetch = async () => {
+      const config = await request.axiosRequest(query, params, body)
+      try {
+        const res = await Axios(config)
+        if (mounted) {
+          clear()
+          setLength(3)
+          setResponse(new Response(res))
+        }
+      } catch (e) {
+        if (e.response) return setResponse(new Response(e.response))
+        setLength(2)
+        setError(e)
+      }
+    }
 
-  useAsyncFetch(
-    () => {
-      if (!config) return
-      return Axios(config)
-    },
-    res => {
-      clear()
-      setLength(3)
-      setResponse(new Response(res))
-    },
-    e => {
-      if (isAxiosError(e) && e.response) return setResponse(new Response(e.response))
-      setLength(2)
-      setError(e)
-    },
-    [config]
-  )
+    fetch()
+    return () => { mounted = false }
+  }, [])
 
   const previewResponse = useCallback(() => {
     preview(response?.data, response?.fileType)
@@ -72,5 +63,5 @@ export const SendRequest: FunctionComponent<SendRequestProps> = ({ request, args
     <Button label='Go again' color='blue' selected={cursor === 1} onHit={again} />
     <Button label='Back' color='blue' selected={cursor === 2} onHit={back} />
   </Fragment>
-  return <Loader>{ status }...</Loader>
+  return <Loader>Making request...</Loader>
 }

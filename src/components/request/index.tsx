@@ -8,7 +8,7 @@ import { PlainObj } from "@/types/postman/misc"
 import { SendRequest } from "@/src/components/request/send-request"
 
 export const Request: FunctionComponent = () => {
-  const { route: { params: routeParams, back }, state: { environment, authentication } } = GlobalState.useContainer()
+  const { clear, route: { params: routeParams, back }, state: { environment, authentication } } = GlobalState.useContainer()
   useMenu([MenuItems.SwitchRequest, MenuItems.Env, MenuItems.SwitchEnv, MenuItems.Auth])
 
   const node: Node = routeParams.node
@@ -17,10 +17,15 @@ export const Request: FunctionComponent = () => {
 
   const [args, setArgs] = useState()
 
+  const goAgain = useCallback(() => {
+    clear()
+    setArgs(undefined)
+  }, [args])
+
   const send = useCallback(async (query?: PlainObj, params?: PlainObj, body?: string) => {
     setArgs({ query, params, body })
   }, [request])
 
-  if (args) return <SendRequest args={args} request={request} again={() => setArgs(undefined)} />
+  if (args) return <SendRequest args={args} request={request} again={goAgain} />
   return <PrepareRequest back={back} request={request} title={node.name} send={send} />
 }
