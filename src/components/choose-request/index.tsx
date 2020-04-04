@@ -11,7 +11,7 @@ import { MenuItems } from "@/types/menu"
 import Section from "../util/section"
 
 export const ChooseRequest: FunctionComponent = () => {
-  const { route: { go }, state: { collection, environment }, config } = GlobalState.useContainer()
+  const { route: { go }, state: { collection, environment } } = GlobalState.useContainer()
   if (!collection) {
     go(Pages.ChooseCollection)
     return null

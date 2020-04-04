@@ -6,7 +6,6 @@ import { TIMEOUT } from "@/src/constants"
 
 describe('password grant', () => {
   let result: Promise<string>
-  let error: Error
   const username = 'username'
   const password = 'password'
   const url = 'url'

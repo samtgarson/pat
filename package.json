@@ -49,7 +49,7 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "@samtgarson/eslint-config": "^2.1.0",
+    "@samtgarson/eslint-config": "^2.2.0",
     "@types/inflection": "^1.5.28",
     "@types/jest": "^24.0.25",
     "@types/mime-types": "^2.1.0",
@@ -111,38 +111,14 @@
         "version": "detect"
       }
     },
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "import",
-      "promise"
-    ],
     "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended",
       "plugin:react/recommended",
-      "@samtgarson/eslint-config"
+      "@samtgarson/eslint-config",
+      "@samtgarson/eslint-config/typescript"
     ],
     "rules": {
-      "@typescript-eslint/explicit-function-return-type": 0,
-      "@typescript-eslint/member-delimiter-style": [
-        2,
-        {
-          "multiline": {
-            "delimiter": "none"
-          },
-          "singleline": {
-            "delimiter": "comma"
-          }
-        }
-      ],
       "promise/prefer-await-to-then": 1,
-      "react/prop-types": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "@typescript-eslint/no-use-before-define": 0,
-      "@typescript-eslint/no-empty-function": 0,
-      "@typescript-eslint/ban-ts-ignore": 0
+      "react/prop-types": 0
     }
   }
 }

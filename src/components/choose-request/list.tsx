@@ -12,6 +12,7 @@ type ListProps = {
   collection: Collection
   filter: string
   onSelect?: (node: Node) => void
+  foo?: string
 }
 
 const Window = WindowFactory<QuickScoreResult<SearchCandidate>>()

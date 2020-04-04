@@ -13,7 +13,7 @@ interface ResultProps extends SearchCandidate {
   emptyFilter: boolean
 }
 
-export const Result: FunctionComponent<ResultProps> = ({ name, ancestors, matches, emptyFilter, selected }) => {
+export const Result: FunctionComponent<ResultProps> = ({ name, ancestors, matches,  selected }) => {
   const requestColor = { [selected ? 'blueBright' : 'whiteBright']: true }
   const directoryColor = { [selected ? 'blue' : 'white']: true }
   const pointer = selected ? `${figures.pointer} ` : '  '
