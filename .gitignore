@@ -1,3 +1,8 @@
 /dist/
 /coverage/
 /bin
+
+website/.cache/
+website/public
+
+.now

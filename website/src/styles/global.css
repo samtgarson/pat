@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+html {
+  font: 16px/22px 'Work Sans', monospace;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+*:before {
+  box-sizing: inherit;
+}
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: hsla(0, 0%, 0%, 0.8);
+  word-wrap: break-word;
+  font-kerning: normal;
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+a {
+  color: black;
+  font-weight: bold;
+}
+
+code, .box {
+  display: block;
+  background-color: rgba(240, 238, 235, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+img {
+  max-width: 100%;
+}

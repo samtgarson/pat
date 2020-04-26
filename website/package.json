@@ -1,0 +1,82 @@
+{
+  "name": "@samtgarson/pat-website",
+  "private": true,
+  "description": "Website for pat-cli",
+  "version": "0.1.0",
+  "dependencies": {
+    "gatsby": "^2.19.45",
+    "gatsby-image": "^2.2.44",
+    "gatsby-plugin-manifest": "^2.3.3",
+    "gatsby-plugin-react-helmet": "^3.1.24",
+    "gatsby-plugin-sharp": "^2.4.13",
+    "gatsby-plugin-typescript": "^2.3.1",
+    "gatsby-source-filesystem": "^2.1.56",
+    "gatsby-transformer-sharp": "^2.3.19",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-feather": "^2.0.3",
+    "react-helmet": "^5.2.1"
+  },
+  "devDependencies": {
+    "@samtgarson/eslint-config": "^2.1.0",
+    "@types/node": "^13.9.5",
+    "@types/react": "^16.9.27",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-helmet": "^5.0.15",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "gatsby serve",
+    "clean": "gatsby clean",
+    "now-build": "NODE_ENV=production gatsby build --prefix-paths"
+  },
+  "eslintConfig": {
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "import",
+      "promise"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "@samtgarson/eslint-config"
+    ],
+    "rules": {
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/member-delimiter-style": [
+        2,
+        {
+          "multiline": {
+            "delimiter": "none"
+          },
+          "singleline": {
+            "delimiter": "comma"
+          }
+        }
+      ],
+      "promise/prefer-await-to-then": 1,
+      "react/prop-types": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-use-before-define": 0,
+      "@typescript-eslint/no-empty-function": 0,
+      "@typescript-eslint/ban-ts-ignore": 0
+    }
+  }
+}
