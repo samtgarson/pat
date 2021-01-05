@@ -23,7 +23,7 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "chalk": "^3.0.0",
     "commander": "^5.0.0-1",
     "conf": "^6.2.0",
